@@ -1,0 +1,321 @@
+{
+  "name": "Enrich IDR Investigation Hashes with VirusTotal and Post to Teams",
+  "description": "# Description\n\nThis workflow triggers on new InsightIDR investigations, retrieves associated alerts, extracts SHA256 file hashes from the alert evidence, looks up each hash in VirusTotal, and posts an enrichment summary to a Microsoft Teams channel.\n\n## Key Features\n\n* Automatically enriches new InsightIDR investigations with VirusTotal file hash intelligence\n* Extracts SHA256 hashes from investigation alert data\n* Posts formatted HTML results to a Teams channel for SOC visibility\n\n## Requirements\n\n* Rapid7 InsightIDR connection configured\n* VirusTotal API key connection\n* Microsoft Teams connection\n* A configured Teams team and channel for notifications\n\n## Setup\n\nImport this workflow and configure:\n1. The InsightIDR connection\n2. The VirusTotal connection\n3. The Microsoft Teams connection\n4. Set the workflow parameters for Teams Team and Teams Channel\n\n## Technical Details\n\n|Plugin|Version|Count|\n|-------|-------|-------|\n|Rapid7 InsightIDR|12.0.9|2|\n|ExtractIt|3.0.16|1|\n|VirusTotal|10.0.9|1|\n|Microsoft Teams|7.0.6|1|\n\n## Version History\n\n* 1.0.0 - Initial workflow",
+  "humanCostSeconds": 600,
+  "humanCostDisplayUnit": "minutes",
+  "tags": ["Threat Intelligence"],
+  "summary": "Enriches new InsightIDR investigations by extracting file hashes and looking them up in VirusTotal, then notifying via Teams.",
+  "parameters": {
+    "Teams Team": {
+      "type": "string",
+      "description": "The Microsoft Teams team name to post enrichment results to",
+      "required": true
+    },
+    "Teams Channel": {
+      "type": "string",
+      "description": "The Microsoft Teams channel name to post enrichment results to",
+      "required": true
+    }
+  },
+  "trigger": {
+    "key": "trigger",
+    "kind": "plugin",
+    "name": "Get New Investigations",
+    "identifier": "get_new_investigations",
+    "description": "Polls InsightIDR for new investigations",
+    "plugin": {
+      "name": "Rapid7 InsightIDR",
+      "slugVendor": "rapid7",
+      "slugName": "rapid7_insightidr",
+      "slugVersion": "12.0.9",
+      "imageData": ""
+    },
+    "connection": "",
+    "input": {
+      "frequency": 15,
+      "search": []
+    },
+    "inputJsonSchema": {
+      "definitions": {},
+      "properties": {
+        "frequency": {
+          "type": "integer",
+          "title": "Frequency",
+          "description": "Poll frequency in seconds",
+          "default": 15
+        },
+        "search": {
+          "type": "array",
+          "title": "Search",
+          "description": "The criteria for which entities to return"
+        }
+      },
+      "type": "object"
+    },
+    "outputJsonSchema": {
+      "definitions": {
+        "investigation": {
+          "type": "object",
+          "properties": {
+            "assignee": {"type": "object"},
+            "created_time": {"type": "string"},
+            "disposition": {"type": "string"},
+            "first_alert_time": {"type": "string"},
+            "last_accessed": {"type": "string"},
+            "latest_alert_time": {"type": "string"},
+            "organization_id": {"type": "string"},
+            "priority": {"type": "string"},
+            "rrn": {"type": "string"},
+            "source": {"type": "string"},
+            "status": {"type": "string"},
+            "title": {"type": "string"}
+          }
+        }
+      },
+      "properties": {
+        "investigation": {
+          "$ref": "#/definitions/investigation",
+          "title": "Investigation",
+          "description": "A new investigation"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "steps": [
+    {
+      "key": "list_alerts",
+      "type": "action",
+      "name": "List Alerts for Investigation",
+      "plugin": {
+        "name": "Rapid7 InsightIDR",
+        "slugVendor": "rapid7",
+        "slugName": "rapid7_insightidr",
+        "slugVersion": "12.0.9",
+        "imageData": ""
+      },
+      "identifier": "list_alerts_for_investigation",
+      "connection": "",
+      "input": {
+        "id": "{{$trigger.investigation.rrn}}",
+        "size": 100,
+        "index": 0
+      },
+      "defaultInputJSONSchema": {
+        "definitions": {},
+        "properties": {
+          "id": {"type": "string", "title": "ID or RRN", "description": "The identifier of investigation (ID or RRN)"},
+          "size": {"type": "integer", "title": "Size", "description": "The optional size of the page to retrieve", "default": 100},
+          "index": {"type": "integer", "title": "Index", "description": "The zero-based index of the page to retrieve", "default": 0}
+        },
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "definitions": {
+          "alert": {
+            "type": "object",
+            "properties": {
+              "alert_type": {"type": "string"},
+              "alert_type_description": {"type": "string"},
+              "created_time": {"type": "string"},
+              "detection_rule_rrn": {"type": "string"},
+              "first_event_time": {"type": "string"},
+              "id": {"type": "string"},
+              "latest_event_time": {"type": "string"},
+              "title": {"type": "string"}
+            }
+          },
+          "investigation_metadata": {
+            "type": "object",
+            "properties": {
+              "index": {"type": "integer"},
+              "size": {"type": "integer"},
+              "total_data": {"type": "integer"},
+              "total_pages": {"type": "integer"}
+            }
+          }
+        },
+        "properties": {
+          "alerts": {"type": "array", "title": "Alerts", "description": "A list of alerts", "items": {"$ref": "#/definitions/alert"}},
+          "metadata": {"$ref": "#/definitions/investigation_metadata", "title": "Metadata", "description": "Pagination metadata"}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "key": "extract_hashes",
+      "type": "action",
+      "name": "SHA256 Hash Extractor",
+      "plugin": {
+        "name": "ExtractIt",
+        "slugVendor": "rapid7",
+        "slugName": "extractit",
+        "slugVersion": "3.0.16",
+        "imageData": ""
+      },
+      "identifier": "sha256_extractor",
+      "connectionType": "NONE",
+      "connection": "",
+      "input": {
+        "str": "{{list_alerts.alerts}}",
+        "file": ""
+      },
+      "defaultInputJSONSchema": {
+        "definitions": {},
+        "properties": {
+          "str": {"type": "string", "title": "String", "description": "Input string"},
+          "file": {"type": "string", "title": "File", "description": "Input file as bytes"}
+        },
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "definitions": {},
+        "properties": {
+          "sha256": {"type": "array", "title": "SHA256 Hash", "description": "List of extracted SHA256 Hashes", "items": {"type": "string"}}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "key": "loop_hashes",
+      "type": "loop",
+      "name": "Loop Hashes",
+      "repeatVariable": "{{extract_hashes.sha256}}",
+      "innerEdgeLabel": "_loop_inner",
+      "nextEdgeLabel": "_loop_next",
+      "customOutput": [
+        {
+          "name": "vt_results",
+          "outputType": "array",
+          "input": {
+            "expression": {
+              "args": [{"name": "lookup_vt.found", "type": "variable"}],
+              "name": "is_defined",
+              "type": "function"
+            },
+            "expressionText": "is_defined({{lookup_vt.found}})",
+            "value": "{{lookup_vt.found}}",
+            "valueType": "boolean"
+          }
+        }
+      ],
+      "outputJSONSchema": {
+        "properties": {
+          "vt_results": {
+            "description": "Custom output: \"vt_results\"",
+            "items": {"type": "boolean"},
+            "title": "vt_results",
+            "type": "array"
+          }
+        },
+        "title": "Variables",
+        "type": "object"
+      }
+    },
+    {
+      "key": "lookup_vt",
+      "type": "action",
+      "name": "Lookup Hash",
+      "plugin": {
+        "name": "VirusTotal",
+        "slugVendor": "rapid7",
+        "slugName": "virustotal",
+        "slugVersion": "10.0.9",
+        "imageData": ""
+      },
+      "identifier": "lookup_hash",
+      "connection": "",
+      "input": {
+        "hash": "{{loop_hashes.item}}"
+      },
+      "defaultInputJSONSchema": {
+        "definitions": {},
+        "properties": {
+          "hash": {"type": "string", "title": "Hash", "description": "MD5/SHA1/SHA256 hash to lookup"}
+        },
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "definitions": {
+          "file_report": {
+            "type": "object",
+            "properties": {
+              "malicious": {"type": "boolean"},
+              "positives": {"type": "integer"},
+              "sha256": {"type": "string"},
+              "md5": {"type": "string"}
+            }
+          }
+        },
+        "properties": {
+          "report": {"$ref": "#/definitions/file_report", "title": "Report", "description": "Hash report"},
+          "found": {"type": "boolean", "title": "Found", "description": "True if found"}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "key": "post_teams",
+      "type": "action",
+      "name": "Send HTML Message",
+      "plugin": {
+        "name": "Microsoft Teams",
+        "slugVendor": "rapid7",
+        "slugName": "microsoft_teams",
+        "slugVersion": "7.0.6",
+        "imageData": ""
+      },
+      "identifier": "send_html_message",
+      "connection": "",
+      "input": {
+        "team_name": "{{$workflow.Teams Team}}",
+        "channel_name": "{{$workflow.Teams Channel}}",
+        "message_content": "<h3>VirusTotal Hash Enrichment</h3><p><b>Investigation:</b> {{$trigger.investigation.title}}</p><p><b>RRN:</b> {{$trigger.investigation.rrn}}</p><p><b>Hashes found:</b> {{extract_hashes.sha256}}</p><p><b>VirusTotal results:</b> {{loop_hashes.vt_results}}</p><p><a href=\"{{$trigger.investigation.rrn}}\">View Investigation</a></p>",
+        "thread_id": ""
+      },
+      "defaultInputJSONSchema": {
+        "definitions": {},
+        "properties": {
+          "team_name": {"type": "string", "title": "Team Name", "description": "Team name"},
+          "channel_name": {"type": "string", "title": "Channel Name", "description": "Channel name"},
+          "thread_id": {"type": "string", "title": "Thread ID", "description": "To post in a thread, select parent message ID"},
+          "message_content": {"type": "string", "title": "Message Content", "description": "HTML content to send"}
+        },
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "definitions": {
+          "message": {
+            "type": "object",
+            "properties": {
+              "body": {"type": "object"},
+              "from": {"type": "object"},
+              "ID": {"type": "string"},
+              "messageType": {"type": "string"}
+            }
+          }
+        },
+        "properties": {
+          "message": {"$ref": "#/definitions/message", "title": "Message", "description": "The message object that was created"}
+        },
+        "type": "object"
+      }
+    },
+    {
+      "key": "artifact_summary",
+      "type": "artifact",
+      "name": "Enrichment Summary",
+      "content": "## VirusTotal Hash Enrichment\n\n**Investigation:** {{$trigger.investigation.title}}\n**Priority:** {{$trigger.investigation.priority}}\n**Status:** {{$trigger.investigation.status}}\n\n### Extracted Hashes\n`{{extract_hashes.sha256}}`\n\n### Results\n{{loop_hashes.vt_results}}\n\n**Job:** [{{$job.URL}}]({{$job.URL}})"
+    }
+  ],
+  "edges": [
+    {"from": "trigger", "to": "list_alerts"},
+    {"from": "list_alerts", "to": "extract_hashes"},
+    {"from": "extract_hashes", "to": "loop_hashes"},
+    {"from": "loop_hashes", "to": "lookup_vt", "label": "_loop_inner", "parentKey": "loop_hashes"},
+    {"from": "lookup_vt", "to": "", "label": "_loop_end", "parentKey": "loop_hashes"},
+    {"from": "loop_hashes", "to": "post_teams", "label": "_loop_next"},
+    {"from": "post_teams", "to": "artifact_summary"},
+    {"from": "artifact_summary", "to": ""}
+  ]
+}

@@ -1,0 +1,1745 @@
+{
+  "generated_from": "insightconnect-workflows usage",
+  "note": "USAGE-DERIVED, not exhaustive. It lists only plugins/actions/triggers that appear in shipped workflows. Always confirm the current version + full input schema from plugin.spec.yaml on origin/master before generating.",
+  "plugin_count": 82,
+  "plugins": {
+    "microsoft_teams": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Microsoft Teams"
+      ],
+      "versions": {
+        "3.1.0": 105,
+        "4.2.0": 103,
+        "4.1.0": 46,
+        "6.0.0": 45,
+        "7.0.2": 29,
+        "3.1.2": 25,
+        "3.2.0": 21,
+        "7.0.0": 19,
+        "3.1.1": 17,
+        "6.0.1": 15,
+        "5.1.0": 7,
+        "3.0.1": 6,
+        "3.1.5": 6,
+        "7.0.3": 6,
+        "3.1.4": 5
+      },
+      "actions": {
+        "send_html_message": 369,
+        "send_message": 23
+      },
+      "triggers": {
+        "new_message_received": 63
+      },
+      "total_action_uses": 392,
+      "total_trigger_uses": 63
+    },
+    "rapid7_insightvm": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Rapid7 InsightVM",
+        "Rapid7 InsightVM Console"
+      ],
+      "versions": {
+        "4.9.0": 26,
+        "4.8.1": 24,
+        "7.0.2": 11,
+        "5.1.0": 10,
+        "4.9.1": 8,
+        "8.0.13": 7,
+        "6.0.0": 6,
+        "5.0.1": 6,
+        "4.2.0": 3,
+        "8.0.11": 2,
+        "4.10.0": 1,
+        "3.5.0": 1,
+        "8.0.5": 1
+      },
+      "actions": {
+        "asset_search": 15,
+        "get_asset": 8,
+        "generate_adhoc_sql_report": 8,
+        "get_vulnerability": 7,
+        "top_remediations": 6,
+        "review_exception": 6,
+        "delete_asset": 4,
+        "get_vulnerability_affected_assets": 4,
+        "tag_asset": 3,
+        "get_tags": 3,
+        "get_asset_groups": 3,
+        "scan": 3,
+        "create_tag": 2,
+        "get_asset_group_assets": 2,
+        "get_sites": 2,
+        "list_inactive_assets": 2,
+        "get_expiring_vulnerability_exceptions": 2,
+        "get_asset_group": 2,
+        "get_user": 2,
+        "get_asset_tags": 2,
+        "get_site": 2,
+        "get_scan": 2,
+        "update_scan_status": 2,
+        "update_asset_group_search_criteria": 1,
+        "create_asset_group": 1,
+        "delete_exception": 1,
+        "get_tag_assets": 1,
+        "tag_assets": 1,
+        "update_site_included_targets": 1,
+        "create_exception": 1,
+        "get_scan_assets": 1
+      },
+      "triggers": {
+        "new_exception_request": 3,
+        "new_scans": 2,
+        "scan_completion": 1
+      },
+      "total_action_uses": 100,
+      "total_trigger_uses": 6
+    },
+    "rapid7_insightidr": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Rapid7 InsightIDR"
+      ],
+      "versions": {
+        "4.2.0": 17,
+        "12.0.1": 16,
+        "12.0.5": 13,
+        "4.3.0": 10,
+        "11.0.5": 6,
+        "8.1.1": 6,
+        "4.2.1": 6,
+        "4.1.1": 5,
+        "10.0.0": 3,
+        "12.0.2": 3,
+        "12.0.6": 3,
+        "10.3.2": 2,
+        "4.0.0": 1,
+        "1.3.0": 1
+      },
+      "actions": {
+        "create_comment": 26,
+        "get_investigation": 18,
+        "set_status_of_investigation_action": 17,
+        "list_alerts_for_investigation": 10,
+        "get_alert_evidence": 10,
+        "upload_attachment": 4,
+        "create_investigation": 2,
+        "get_alert_information": 1,
+        "get_alert_actors": 1,
+        "advanced_query_on_log_set": 1,
+        "update_investigation": 1
+      },
+      "triggers": {
+        "get_new_investigations": 1
+      },
+      "total_action_uses": 91,
+      "total_trigger_uses": 1
+    },
+    "type_converter": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Type Converter"
+      ],
+      "versions": {
+        "1.8.2": 26,
+        "1.8.0": 12,
+        "1.8.1": 10,
+        "1.6.0": 9,
+        "1.6.1": 6,
+        "1.7.0": 6,
+        "1.8.7": 4,
+        "1.5.1": 2,
+        "1.8.4": 1,
+        "1.8.3": 1,
+        "1.8.6": 1
+      },
+      "actions": {
+        "combine_arrays": 36,
+        "string_to_integer": 10,
+        "string_to_object": 8,
+        "string_to_float": 7,
+        "string_to_list": 7,
+        "array_diff": 4,
+        "array_match": 3,
+        "array_to_string": 3
+      },
+      "triggers": {},
+      "total_action_uses": 78,
+      "total_trigger_uses": 0
+    },
+    "extractit": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "ExtractIt"
+      ],
+      "versions": {
+        "3.0.6": 19,
+        "2.0.0": 8,
+        "3.0.4": 4,
+        "3.0.12": 3,
+        "3.0.8": 1,
+        "1.1.6": 1
+      },
+      "actions": {
+        "url_extractor": 17,
+        "domain_extractor": 15,
+        "sha256_extractor": 1,
+        "md5_extractor": 1,
+        "sha1_extractor": 1,
+        "ip_extractor": 1
+      },
+      "triggers": {},
+      "total_action_uses": 36,
+      "total_trigger_uses": 0
+    },
+    "active_directory_ldap": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Active Directory LDAP"
+      ],
+      "versions": {
+        "5.3.5": 16,
+        "9.0.1": 4,
+        "5.2.2": 4,
+        "9.0.0": 3,
+        "5.1.0": 2,
+        "5.3.0": 2,
+        "5.3.1": 1,
+        "8.0.0": 1
+      },
+      "actions": {
+        "query": 14,
+        "disable_user": 11,
+        "enable_user": 3,
+        "force_password_reset": 2,
+        "unlock_user": 2,
+        "query_group_membership": 1
+      },
+      "triggers": {},
+      "total_action_uses": 33,
+      "total_trigger_uses": 0
+    },
+    "virustotal": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "VirusTotal"
+      ],
+      "versions": {
+        "10.0.0": 16,
+        "7.0.0": 8,
+        "10.0.5": 3,
+        "10.0.2": 2
+      },
+      "actions": {
+        "scan_url_report": 8,
+        "lookup_hash": 7,
+        "domain_report": 4,
+        "ip_address_report": 4,
+        "scan_url": 2,
+        "rescan_file": 1,
+        "lookup_hashes": 1,
+        "scan_file": 1,
+        "scan_file_report": 1
+      },
+      "triggers": {},
+      "total_action_uses": 29,
+      "total_trigger_uses": 0
+    },
+    "datetime": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Datetime"
+      ],
+      "versions": {
+        "3.0.0": 12,
+        "3.0.1": 4,
+        "3.0.2": 2,
+        "3.0.3": 2,
+        "2.0.6": 1,
+        "2.0.4": 1
+      },
+      "actions": {
+        "get_datetime": 10,
+        "date_from_epoch": 7,
+        "time_elapsed": 2,
+        "add_to_datetime": 2,
+        "subtract_from_datetime": 1
+      },
+      "triggers": {},
+      "total_action_uses": 22,
+      "total_trigger_uses": 0
+    },
+    "jira": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Jira"
+      ],
+      "versions": {
+        "6.4.0": 18,
+        "6.5.2": 2,
+        "6.5.3": 1
+      },
+      "actions": {
+        "create_issue": 8,
+        "comment_issue": 5,
+        "find_issues": 3,
+        "transition_issue": 2,
+        "assign_issue": 1,
+        "find_users": 1,
+        "attach_issue": 1
+      },
+      "triggers": {},
+      "total_action_uses": 21,
+      "total_trigger_uses": 0
+    },
+    "palo_alto_pan_os": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Palo Alto Firewall",
+        "Palo Alto PAN-OS"
+      ],
+      "versions": {
+        "6.1.1": 17,
+        "6.1.0": 2,
+        "1.5.6": 2
+      },
+      "actions": {
+        "add_address_object_to_group": 4,
+        "check_if_address_object_in_group": 4,
+        "set_address_object": 4,
+        "remove_address_object_from_group": 3,
+        "commit": 2,
+        "add_to_policy": 2,
+        "get_addresses_from_group": 2
+      },
+      "triggers": {},
+      "total_action_uses": 21,
+      "total_trigger_uses": 0
+    },
+    "html": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "HTML"
+      ],
+      "versions": {
+        "1.2.2": 12,
+        "1.2.1": 5,
+        "2.0.1": 1,
+        "1.2.7": 1
+      },
+      "actions": {
+        "text": 19
+      },
+      "triggers": {},
+      "total_action_uses": 19,
+      "total_trigger_uses": 0
+    },
+    "crowdstrike_falcon": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "CrowdStrike Falcon"
+      ],
+      "versions": {
+        "6.1.2": 18
+      },
+      "actions": {
+        "blacklist_ioc": 12,
+        "quarantine": 4,
+        "get_agent_details": 2
+      },
+      "triggers": {},
+      "total_action_uses": 18,
+      "total_trigger_uses": 0
+    },
+    "hashit": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "HashIt"
+      ],
+      "versions": {
+        "2.0.4": 12,
+        "2.0.5": 2,
+        "2.0.3": 2,
+        "2.0.7": 1,
+        "2.0.1": 1
+      },
+      "actions": {
+        "string": 16,
+        "bytes": 2
+      },
+      "triggers": {},
+      "total_action_uses": 18,
+      "total_trigger_uses": 0
+    },
+    "python_3_script": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Python 3 Script"
+      ],
+      "versions": {
+        "2.0.2": 6,
+        "5.2.1": 3,
+        "4.0.2": 2,
+        "2.0.1": 2,
+        "2.0.0": 1,
+        "2.0.4": 1,
+        "4.0.7": 1,
+        "4.0.3": 1,
+        "5.2.0": 1
+      },
+      "actions": {
+        "run": 18
+      },
+      "triggers": {},
+      "total_action_uses": 18,
+      "total_trigger_uses": 0
+    },
+    "recorded_future": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Recorded Future"
+      ],
+      "versions": {
+        "5.0.1": 9,
+        "7.0.0": 7,
+        "6.0.1": 2
+      },
+      "actions": {
+        "lookup_IP_address": 4,
+        "lookup_domain": 4,
+        "lookup_url": 4,
+        "lookup_hash": 4,
+        "lookup_vulnerability": 2
+      },
+      "triggers": {},
+      "total_action_uses": 18,
+      "total_trigger_uses": 0
+    },
+    "math": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Math"
+      ],
+      "versions": {
+        "1.2.1": 15,
+        "1.2.2": 2
+      },
+      "actions": {
+        "calculate": 17
+      },
+      "triggers": {},
+      "total_action_uses": 17,
+      "total_trigger_uses": 0
+    },
+    "rapid7_vulndb": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Rapid7 Vulnerability & Exploit Database"
+      ],
+      "versions": {
+        "2.1.1": 13,
+        "2.0.3": 4
+      },
+      "actions": {
+        "get_content": 12,
+        "search_db": 5
+      },
+      "triggers": {},
+      "total_action_uses": 17,
+      "total_trigger_uses": 0
+    },
+    "timers": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Timers"
+      ],
+      "versions": {
+        "2.0.5": 11,
+        "3.0.3": 3,
+        "2.0.4": 2,
+        "2.0.2": 1
+      },
+      "actions": {
+        "delay": 6
+      },
+      "triggers": {
+        "daily": 5,
+        "weekly": 3,
+        "periodic": 2,
+        "hourly": 1
+      },
+      "total_action_uses": 6,
+      "total_trigger_uses": 11
+    },
+    "servicenow": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "ServiceNow"
+      ],
+      "versions": {
+        "8.1.1": 5,
+        "6.0.1": 4,
+        "8.0.3": 3,
+        "8.1.2": 3,
+        "6.0.0": 1
+      },
+      "actions": {
+        "create_incident": 5,
+        "update_incident": 2,
+        "read_incident": 2,
+        "search_incident": 2,
+        "put_incident_attachment": 2,
+        "create_security_incident": 1,
+        "get_incident_comments_worknotes": 1
+      },
+      "triggers": {
+        "incident_changed": 1
+      },
+      "total_action_uses": 15,
+      "total_trigger_uses": 1
+    },
+    "microsoft_office365_email": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Microsoft Office 365 Email"
+      ],
+      "versions": {
+        "6.0.0": 7,
+        "7.0.3": 3,
+        "6.0.5": 2,
+        "4.0.0": 2,
+        "4.1.4": 1
+      },
+      "actions": {
+        "send_email": 6,
+        "get_email_from_user": 2,
+        "delete_email": 2
+      },
+      "triggers": {
+        "email_received": 5
+      },
+      "total_action_uses": 10,
+      "total_trigger_uses": 5
+    },
+    "storage": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Storage"
+      ],
+      "versions": {
+        "1.0.1": 9,
+        "1.0.0": 6
+      },
+      "actions": {
+        "store": 8,
+        "retrieve": 5,
+        "check_for_variable": 2
+      },
+      "triggers": {},
+      "total_action_uses": 15,
+      "total_trigger_uses": 0
+    },
+    "microsoft_office365_email_security": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Microsoft Office365 Email Security"
+      ],
+      "versions": {
+        "4.0.0": 8,
+        "4.0.4": 2,
+        "4.0.2": 2,
+        "2.1.0": 2
+      },
+      "actions": {
+        "block_sender_transport_rule": 6,
+        "mass_search_and_purge": 3,
+        "mass_purge": 3,
+        "email_compliance_search": 2
+      },
+      "triggers": {},
+      "total_action_uses": 14,
+      "total_trigger_uses": 0
+    },
+    "string": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "String Operations"
+      ],
+      "versions": {
+        "1.4.0": 11,
+        "1.2.1": 2
+      },
+      "actions": {
+        "split_to_list": 10,
+        "lower": 2,
+        "upper": 1
+      },
+      "triggers": {},
+      "total_action_uses": 13,
+      "total_trigger_uses": 0
+    },
+    "cisco_asa": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Cisco Adaptive Security Appliance"
+      ],
+      "versions": {
+        "1.5.1": 5,
+        "1.4.1": 5,
+        "1.3.0": 2
+      },
+      "actions": {
+        "check_if_address_object_in_group": 4,
+        "add_address_to_group": 4,
+        "remove_address_from_group": 2,
+        "create_address_object": 2
+      },
+      "triggers": {},
+      "total_action_uses": 12,
+      "total_trigger_uses": 0
+    },
+    "fireeye_hx": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "FireEye HX"
+      ],
+      "versions": {
+        "2.0.0": 12
+      },
+      "actions": {
+        "get_host_id_from_hostname": 6,
+        "check_host_quarantine_status": 2,
+        "quarantine_host": 2,
+        "unquarantine_host": 2
+      },
+      "triggers": {},
+      "total_action_uses": 12,
+      "total_trigger_uses": 0
+    },
+    "sentinelone": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "SentinelOne"
+      ],
+      "versions": {
+        "7.1.0": 6,
+        "11.1.4": 3,
+        "11.1.5": 3
+      },
+      "actions": {
+        "blacklist": 4,
+        "quarantine": 4,
+        "update_analyst_verdict": 2,
+        "update_incident_status": 1,
+        "get_agent_details": 1
+      },
+      "triggers": {},
+      "total_action_uses": 12,
+      "total_trigger_uses": 0
+    },
+    "whois": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "WHOIS"
+      ],
+      "versions": {
+        "3.0.3": 4,
+        "3.1.0": 3,
+        "3.0.0": 1,
+        "2.0.2": 1,
+        "1.0.7": 1,
+        "3.1.9": 1
+      },
+      "actions": {
+        "address": 7,
+        "domain": 4
+      },
+      "triggers": {},
+      "total_action_uses": 11,
+      "total_trigger_uses": 0
+    },
+    "automox": {
+      "vendor": [
+        "automox"
+      ],
+      "display_names": [
+        "Automox"
+      ],
+      "versions": {
+        "1.1.1": 6,
+        "3.0.0": 4
+      },
+      "actions": {
+        "get_device_by_ip": 2,
+        "get_device_by_hostname": 2,
+        "get_vulnerability_sync_batch": 2,
+        "action_on_vulnerability_sync_task": 1,
+        "action_on_vulnerability_sync_batch": 1,
+        "list_vulnerability_sync_tasks": 1,
+        "upload_vulnerability_sync_file": 1
+      },
+      "triggers": {},
+      "total_action_uses": 10,
+      "total_trigger_uses": 0
+    },
+    "carbon_black_response": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Cb Response",
+        "VMware Carbon Black EDR"
+      ],
+      "versions": {
+        "3.1.10": 9,
+        "3.1.8": 1
+      },
+      "actions": {
+        "blacklist_hash": 4,
+        "isolate_sensor": 3,
+        "unisolate_sensor": 3
+      },
+      "triggers": {},
+      "total_action_uses": 10,
+      "total_trigger_uses": 0
+    },
+    "csv": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "CSV"
+      ],
+      "versions": {
+        "1.1.6": 3,
+        "2.0.1": 3,
+        "2.0.4": 2,
+        "2.0.5": 2
+      },
+      "actions": {
+        "to_json": 6,
+        "json_to_csv_bytes": 4
+      },
+      "triggers": {},
+      "total_action_uses": 10,
+      "total_trigger_uses": 0
+    },
+    "fortinet_fortigate": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Fortinet FortiGate"
+      ],
+      "versions": {
+        "6.0.1": 10
+      },
+      "actions": {
+        "remove_address_object_from_group": 2,
+        "add_address_object_to_address_group": 2,
+        "get_address_objects": 2,
+        "create_address_object": 2,
+        "check_if_address_in_group": 2
+      },
+      "triggers": {},
+      "total_action_uses": 10,
+      "total_trigger_uses": 0
+    },
+    "microsoft_atp": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Microsoft Windows Defender ATP"
+      ],
+      "versions": {
+        "4.8.1": 6,
+        "4.8.0": 4
+      },
+      "actions": {
+        "blacklist": 4,
+        "get_machine_information": 2,
+        "isolate_machine": 2,
+        "unisolate_machine": 2
+      },
+      "triggers": {},
+      "total_action_uses": 10,
+      "total_trigger_uses": 0
+    },
+    "sonicwall": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "SonicWall Firewall"
+      ],
+      "versions": {
+        "1.3.1": 8,
+        "1.3.0": 2
+      },
+      "actions": {
+        "check_if_address_in_address_group": 4,
+        "add_address_object_to_group": 2,
+        "create_address_object": 2,
+        "remove_address_from_group": 2
+      },
+      "triggers": {},
+      "total_action_uses": 10,
+      "total_trigger_uses": 0
+    },
+    "any_run": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "ANY.RUN"
+      ],
+      "versions": {
+        "3.0.0": 9
+      },
+      "actions": {
+        "get_analysis_verdict": 1,
+        "linux_url_analysis": 1,
+        "download_pcap": 1,
+        "get_ioc": 1,
+        "windows_url_analysis": 1,
+        "android_url_analysis": 1,
+        "get_analysis_report": 1,
+        "get_intelligence": 1,
+        "get_reputation": 1
+      },
+      "triggers": {},
+      "total_action_uses": 9,
+      "total_trigger_uses": 0
+    },
+    "zscaler": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Zscaler"
+      ],
+      "versions": {
+        "1.4.0": 9
+      },
+      "actions": {
+        "blacklist_url": 7,
+        "get_blacklist_url": 2
+      },
+      "triggers": {},
+      "total_action_uses": 9,
+      "total_trigger_uses": 0
+    },
+    "azure_ad_admin": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Azure AD Admin"
+      ],
+      "versions": {
+        "4.0.0": 3,
+        "2.2.3": 3,
+        "4.2.0": 2
+      },
+      "actions": {
+        "force_user_to_change_password": 2,
+        "revoke_sign_in_sessions": 2,
+        "enable_user_account": 2,
+        "disable_user_account": 2
+      },
+      "triggers": {},
+      "total_action_uses": 8,
+      "total_trigger_uses": 0
+    },
+    "checkpoint_ngfw": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Check Point NGFW"
+      ],
+      "versions": {
+        "2.0.1": 8
+      },
+      "actions": {
+        "remove_address_object_from_group": 2,
+        "add_address_object_to_group": 2,
+        "create_address_object": 2,
+        "check_if_address_in_group": 2
+      },
+      "triggers": {},
+      "total_action_uses": 8,
+      "total_trigger_uses": 0
+    },
+    "microsoft_sccm": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Microsoft SCCM"
+      ],
+      "versions": {
+        "2.1.2": 8
+      },
+      "actions": {
+        "get_software_update_group": 1,
+        "get_devices": 1,
+        "new_software_update_group": 1,
+        "new_collection": 1,
+        "add_software_updates_to_group": 1,
+        "get_software_updates": 1,
+        "get_collection": 1,
+        "add_devices_to_collection": 1
+      },
+      "triggers": {},
+      "total_action_uses": 8,
+      "total_trigger_uses": 0
+    },
+    "rapid7_insight_agent": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Rapid7 Insight Agent"
+      ],
+      "versions": {
+        "2.0.1": 6,
+        "3.0.0": 2
+      },
+      "actions": {
+        "quarantine": 5,
+        "get_agent_details": 3
+      },
+      "triggers": {},
+      "total_action_uses": 8,
+      "total_trigger_uses": 0
+    },
+    "rest": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "HTTP Requests"
+      ],
+      "versions": {
+        "4.0.1": 8
+      },
+      "actions": {
+        "post": 8
+      },
+      "triggers": {},
+      "total_action_uses": 8,
+      "total_trigger_uses": 0
+    },
+    "threatcrowd": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Threat Crowd"
+      ],
+      "versions": {
+        "3.0.0": 4,
+        "3.0.1": 4
+      },
+      "actions": {
+        "hash": 4,
+        "domain": 3,
+        "address": 1
+      },
+      "triggers": {},
+      "total_action_uses": 8,
+      "total_trigger_uses": 0
+    },
+    "trendmicro_apex": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Trend Micro Apex"
+      ],
+      "versions": {
+        "3.0.1": 8
+      },
+      "actions": {
+        "blacklist": 4,
+        "quarantine": 4
+      },
+      "triggers": {},
+      "total_action_uses": 8,
+      "total_trigger_uses": 0
+    },
+    "broadcom_symantec_endpoint_protection": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Broadcom Symantec Endpoint Protection"
+      ],
+      "versions": {
+        "1.0.2": 6
+      },
+      "actions": {
+        "quarantine": 4,
+        "blacklist": 2
+      },
+      "triggers": {},
+      "total_action_uses": 6,
+      "total_trigger_uses": 0
+    },
+    "cylance_protect": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "BlackBerry CylancePROTECT"
+      ],
+      "versions": {
+        "1.0.3": 4,
+        "1.4.0": 1,
+        "1.1.0": 1
+      },
+      "actions": {
+        "blacklist": 4,
+        "quarantine": 2
+      },
+      "triggers": {},
+      "total_action_uses": 6,
+      "total_trigger_uses": 0
+    },
+    "cymru_malware_hash": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Team Cymru MHR"
+      ],
+      "versions": {
+        "1.1.2": 3,
+        "2.0.0": 2,
+        "1.1.1": 1
+      },
+      "actions": {
+        "lookup_hash": 6
+      },
+      "triggers": {},
+      "total_action_uses": 6,
+      "total_trigger_uses": 0
+    },
+    "meraki": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Cisco Meraki"
+      ],
+      "versions": {
+        "4.0.0": 6
+      },
+      "actions": {
+        "get_network_ssids": 2,
+        "get_networks": 2,
+        "update_l3_firewall_rule": 2
+      },
+      "triggers": {},
+      "total_action_uses": 6,
+      "total_trigger_uses": 0
+    },
+    "palo_alto_cortex_xdr": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Palo Alto Cortex XDR"
+      ],
+      "versions": {
+        "4.0.7": 6
+      },
+      "actions": {
+        "isolate_endpoint": 4,
+        "get_endpoint_details": 2
+      },
+      "triggers": {},
+      "total_action_uses": 6,
+      "total_trigger_uses": 0
+    },
+    "base64": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Base64"
+      ],
+      "versions": {
+        "1.1.6": 5
+      },
+      "actions": {
+        "decode": 3,
+        "encode": 2
+      },
+      "triggers": {},
+      "total_action_uses": 5,
+      "total_trigger_uses": 0
+    },
+    "dig": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "DNS",
+        "Dig"
+      ],
+      "versions": {
+        "2.0.0": 4,
+        "1.0.5": 1
+      },
+      "actions": {
+        "reverse": 4,
+        "forward": 1
+      },
+      "triggers": {},
+      "total_action_uses": 5,
+      "total_trigger_uses": 0
+    },
+    "gmail": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Gmail"
+      ],
+      "versions": {
+        "6.1.0": 5
+      },
+      "actions": {
+        "delete_message_by_id": 2,
+        "find_messages": 1
+      },
+      "triggers": {
+        "email_received": 2
+      },
+      "total_action_uses": 3,
+      "total_trigger_uses": 2
+    },
+    "ipstack": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "IPStack"
+      ],
+      "versions": {
+        "3.0.1": 3,
+        "2.0.0": 1,
+        "1.0.1": 1
+      },
+      "actions": {
+        "lookup": 5
+      },
+      "triggers": {},
+      "total_action_uses": 5,
+      "total_trigger_uses": 0
+    },
+    "markdown": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Markdown"
+      ],
+      "versions": {
+        "3.1.0": 4,
+        "3.1.1": 1
+      },
+      "actions": {
+        "markdown_to_html": 5
+      },
+      "triggers": {},
+      "total_action_uses": 5,
+      "total_trigger_uses": 0
+    },
+    "bigfix": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "BigFix"
+      ],
+      "versions": {
+        "7.0.0": 4
+      },
+      "actions": {
+        "create_multiaction_group": 2,
+        "fetch_relevant_fixlets": 2
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "carbon_black_cloud": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Carbon Black Cloud"
+      ],
+      "versions": {
+        "1.0.1": 4
+      },
+      "actions": {
+        "quarantine": 4
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "darktrace": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Darktrace"
+      ],
+      "versions": {
+        "2.0.1": 4
+      },
+      "actions": {
+        "update_watched_domains": 4
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "jq": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "jq"
+      ],
+      "versions": {
+        "3.0.0": 4
+      },
+      "actions": {
+        "run_jq": 4
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "paloalto_wildfire": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Palo Alto Wildfire"
+      ],
+      "versions": {
+        "2.0.0": 4
+      },
+      "actions": {
+        "get_verdict": 2,
+        "submit_file": 1,
+        "submit_url": 1
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "sleep": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Sleep"
+      ],
+      "versions": {
+        "1.0.2": 4
+      },
+      "actions": {
+        "sleep": 4
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "sophos_central": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Sophos Central"
+      ],
+      "versions": {
+        "4.4.0": 4
+      },
+      "actions": {
+        "blacklist": 4
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "trendmicro_deepsecurity": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Trend Micro Deep Security"
+      ],
+      "versions": {
+        "2.2.1": 4
+      },
+      "actions": {
+        "search_computers": 2,
+        "deploy_rules": 1,
+        "search_rules": 1
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "urlscan": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "urlscan.io"
+      ],
+      "versions": {
+        "4.1.1": 4
+      },
+      "actions": {
+        "get_scan_results": 2,
+        "submit_url_for_scan": 2
+      },
+      "triggers": {},
+      "total_action_uses": 4,
+      "total_trigger_uses": 0
+    },
+    "advanced_regex": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Advanced Regex"
+      ],
+      "versions": {
+        "1.0.3": 3
+      },
+      "actions": {
+        "replace": 2,
+        "split": 1
+      },
+      "triggers": {},
+      "total_action_uses": 3,
+      "total_trigger_uses": 0
+    },
+    "microsoft_exchange": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Microsoft Exchange"
+      ],
+      "versions": {
+        "5.2.0": 2,
+        "6.1.3": 1
+      },
+      "actions": {
+        "send_email": 1
+      },
+      "triggers": {
+        "email_received": 2
+      },
+      "total_action_uses": 1,
+      "total_trigger_uses": 2
+    },
+    "rapid7_attackerkb": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Rapid7 AttackerKB"
+      ],
+      "versions": {
+        "1.0.3": 3
+      },
+      "actions": {
+        "topics": 3
+      },
+      "triggers": {},
+      "total_action_uses": 3,
+      "total_trigger_uses": 0
+    },
+    "rapid7_surface_command": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Rapid7 Surface Command"
+      ],
+      "versions": {
+        "1.1.0": 2,
+        "1.0.0": 1
+      },
+      "actions": {
+        "run_adhoc_query": 2,
+        "run_query": 1
+      },
+      "triggers": {},
+      "total_action_uses": 3,
+      "total_trigger_uses": 0
+    },
+    "zendesk": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Zendesk"
+      ],
+      "versions": {
+        "4.0.0": 3
+      },
+      "actions": {
+        "update_ticket": 1,
+        "search": 1,
+        "create_ticket": 1
+      },
+      "triggers": {},
+      "total_action_uses": 3,
+      "total_trigger_uses": 0
+    },
+    "basename": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Basename"
+      ],
+      "versions": {
+        "1.1.0": 1,
+        "1.0.0": 1
+      },
+      "actions": {
+        "basename": 2
+      },
+      "triggers": {},
+      "total_action_uses": 2,
+      "total_trigger_uses": 0
+    },
+    "cybereason": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Cybereason"
+      ],
+      "versions": {
+        "2.0.1": 2
+      },
+      "actions": {
+        "isolate_machine": 2
+      },
+      "triggers": {},
+      "total_action_uses": 2,
+      "total_trigger_uses": 0
+    },
+    "mimecast": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Mimecast"
+      ],
+      "versions": {
+        "5.1.0": 2
+      },
+      "actions": {
+        "create_blocked_sender_policy": 1,
+        "create_managed_url": 1
+      },
+      "triggers": {},
+      "total_action_uses": 2,
+      "total_trigger_uses": 0
+    },
+    "rapid7_insightvm_cloud": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Rapid7 InsightVM Cloud"
+      ],
+      "versions": {
+        "3.1.0": 2
+      },
+      "actions": {
+        "asset_search": 2
+      },
+      "triggers": {},
+      "total_action_uses": 2,
+      "total_trigger_uses": 0
+    },
+    "unshorten": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Unshorten.me"
+      ],
+      "versions": {
+        "1.0.5": 2
+      },
+      "actions": {
+        "unshorten": 2
+      },
+      "triggers": {},
+      "total_action_uses": 2,
+      "total_trigger_uses": 0
+    },
+    "abuseipdb": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "AbuseIPDB"
+      ],
+      "versions": {
+        "5.1.0": 1
+      },
+      "actions": {
+        "check_ip": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "bmc_remedy_itsm": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "BMC Remedy ITSM"
+      ],
+      "versions": {
+        "1.7.0": 1
+      },
+      "actions": {
+        "create_incident": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "connectwise": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "ConnectWise"
+      ],
+      "versions": {
+        "1.0.0": 1
+      },
+      "actions": {
+        "create_ticket": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "domaintools_phisheye": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "DomainTools PhishEye"
+      ],
+      "versions": {
+        "1.0.0": 1
+      },
+      "actions": {
+        "domain_list": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "freshdesk": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "FreshDesk"
+      ],
+      "versions": {
+        "1.0.0": 1
+      },
+      "actions": {
+        "createTicket": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "hybrid_analysis": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Hybrid Analysis"
+      ],
+      "versions": {
+        "3.0.1": 1
+      },
+      "actions": {
+        "lookup_hash": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "ivanti_security_controls": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Ivanti Security Controls"
+      ],
+      "versions": {
+        "1.0.0": 1
+      },
+      "actions": {
+        "get_agents": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "manage_engine_service_desk": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Manage Engine Service Desk"
+      ],
+      "versions": {
+        "2.0.0": 1
+      },
+      "actions": {
+        "add_request": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "nasa": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "NASA"
+      ],
+      "versions": {
+        "1.0.2": 1
+      },
+      "actions": {
+        "get_image": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "opsgenie": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Opsgenie"
+      ],
+      "versions": {
+        "1.1.1": 1
+      },
+      "actions": {
+        "get_on_calls": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    },
+    "twilio": {
+      "vendor": [
+        "rapid7"
+      ],
+      "display_names": [
+        "Twilio"
+      ],
+      "versions": {
+        "1.0.2": 1
+      },
+      "actions": {
+        "send_sms": 1
+      },
+      "triggers": {},
+      "total_action_uses": 1,
+      "total_trigger_uses": 0
+    }
+  }
+}

@@ -1,0 +1,1440 @@
+{
+  "trigger_aba_alert": {
+    "_source_workflow": "Analyze_URL_with_ANYRUN_from_InsightIDR_Alert.icon",
+    "template": {
+      "id": "a1493fed-80ec-4bde-8135-42031122a0f1",
+      "name": "Web server access trigger",
+      "description": "",
+      "input": {},
+      "inputJsonSchema": {
+        "properties": {},
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJsonSchema": {
+        "properties": {},
+        "title": "Variables",
+        "type": "object"
+      },
+      "tags": [],
+      "type": "trigger_aba_alert"
+    }
+  },
+  "trigger_api": {
+    "_source_workflow": "Auto_Close_SentinelOne_Alerts_When_InsightIDR_Investigations_Are_Closed_Part_One.icon",
+    "template": {
+      "id": "23328f5a-4fc7-487f-b95e-9f37d2cd46c7",
+      "name": "New IDR Investigation",
+      "description": "",
+      "input": null,
+      "inputJsonSchema": {
+        "definitions": {},
+        "properties": {},
+        "type": "object"
+      },
+      "outputJsonSchema": {
+        "definitions": {},
+        "properties": {},
+        "type": "object"
+      },
+      "tags": [],
+      "type": "trigger_api",
+      "options": {
+        "webhookEnabled": true
+      }
+    }
+  },
+  "trigger_api_idr": {
+    "_source_workflow": "Enrich_Indicators_with_Recorded_Future_from_IDR_Alert.icon",
+    "template": {
+      "id": "66bb2ab2-13d6-4bb1-ad34-498e614c072d",
+      "name": "IDR Alert",
+      "description": "",
+      "input": null,
+      "inputJsonSchema": {
+        "definitions": {
+          "actor": {
+            "properties": {
+              "assets": {
+                "description": "The assets that are part of the investigation",
+                "items": {
+                  "$ref": "#/definitions/asset"
+                },
+                "order": 2,
+                "title": "Assets",
+                "type": "array"
+              },
+              "users": {
+                "description": "The users that are part of the investigation",
+                "items": {
+                  "$ref": "#/definitions/user"
+                },
+                "order": 1,
+                "title": "Users",
+                "type": "array"
+              }
+            },
+            "title": "Actor",
+            "type": "object"
+          },
+          "asset": {
+            "properties": {
+              "assetId": {
+                "description": "the ID of the asset",
+                "order": 1,
+                "title": "AssetId",
+                "type": "string"
+              },
+              "fqdn": {
+                "description": "The fully qualified domain name",
+                "order": 3,
+                "title": "Fqdn",
+                "type": "string"
+              },
+              "shortname": {
+                "description": "shortname of the asset",
+                "order": 2,
+                "title": "Shortname",
+                "type": "string"
+              }
+            },
+            "required": [
+              "shortname",
+              "assetId"
+            ],
+            "title": "Asset",
+            "type": "object"
+          },
+          "content": {
+            "properties": {
+              "domains": {
+                "description": "A list of domains to check",
+                "items": {
+                  "type": "string"
+                },
+                "order": 2,
+                "title": "Domains",
+                "type": "array"
+              },
+              "ipAddresses": {
+                "description": "A list of ip addresses to check",
+                "items": {
+                  "$ref": "#/definitions/ipAddress"
+                },
+                "order": 3,
+                "title": "IpAddresses",
+                "type": "array"
+              },
+              "processes": {
+                "description": "A list of processes to check",
+                "items": {
+                  "$ref": "#/definitions/process"
+                },
+                "order": 4,
+                "title": "Processes",
+                "type": "array"
+              },
+              "urls": {
+                "description": "A list of URLs to check",
+                "items": {
+                  "type": "string"
+                },
+                "order": 1,
+                "title": "Urls",
+                "type": "array"
+              }
+            },
+            "title": "Content",
+            "type": "object"
+          },
+          "hash": {
+            "properties": {
+              "hash": {
+                "description": "The actual hash",
+                "order": 1,
+                "title": "Hash",
+                "type": "string"
+              },
+              "type": {
+                "description": "The algorithm used to generate the hash",
+                "order": 2,
+                "title": "Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "hash",
+              "type"
+            ],
+            "title": "Hash",
+            "type": "object"
+          },
+          "ipAddress": {
+            "properties": {
+              "ip": {
+                "description": "The raw IP",
+                "order": 1,
+                "title": "Ip",
+                "type": "string"
+              },
+              "type": {
+                "description": "Denotes if an IP is internal or external",
+                "order": 2,
+                "title": "Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "ip",
+              "type"
+            ],
+            "title": "IpAddress",
+            "type": "object"
+          },
+          "process": {
+            "properties": {
+              "assetId": {
+                "description": "The asset id associated with the process",
+                "order": 1,
+                "title": "AssetId",
+                "type": "string"
+              },
+              "cmdLine": {
+                "description": "The raw value of the command line call used to invoke the process",
+                "order": 5,
+                "title": "CmdLine",
+                "type": "string"
+              },
+              "hashes": {
+                "description": "The list of hashes to check",
+                "items": {
+                  "$ref": "#/definitions/hash"
+                },
+                "order": 3,
+                "title": "Hashes",
+                "type": "array"
+              },
+              "name": {
+                "description": "The name of the process",
+                "order": 4,
+                "title": "Name",
+                "type": "string"
+              },
+              "processId": {
+                "description": "The PID from the running process on the asset",
+                "order": 2,
+                "title": "ProcessId",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "assetId",
+              "processId"
+            ],
+            "title": "Process",
+            "type": "object"
+          },
+          "user": {
+            "properties": {
+              "distinguishedName": {
+                "description": "The Active Directory distinguished name of the user",
+                "order": 2,
+                "title": "DistinguishedName",
+                "type": "string"
+              },
+              "emails": {
+                "description": "The email addresses associated with the user",
+                "items": {
+                  "type": "string"
+                },
+                "order": 3,
+                "title": "Emails",
+                "type": "array"
+              },
+              "name": {
+                "description": "The name of the user, as '<firstname> <lastname>' if available, or account name otherwise",
+                "order": 1,
+                "title": "Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "emails"
+            ],
+            "title": "User",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "actors": {
+            "$ref": "#/definitions/actor",
+            "description": "The insightIDR actors that are part of the investigation",
+            "order": 7,
+            "title": "Actors"
+          },
+          "contents": {
+            "$ref": "#/definitions/content",
+            "description": "The contents to enrich",
+            "order": 8,
+            "title": "Contents"
+          },
+          "description": {
+            "description": "The description of the alert",
+            "order": 4,
+            "title": "Description",
+            "type": "string"
+          },
+          "investigationId": {
+            "description": "The investigation id",
+            "order": 6,
+            "title": "InvestigationId",
+            "type": "string"
+          },
+          "link": {
+            "description": "The deep link to the investigation in insightIDR",
+            "order": 5,
+            "title": "Link",
+            "type": "string"
+          },
+          "name": {
+            "description": "The human-readable name of the alert",
+            "order": 3,
+            "title": "Name",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "The time the alert was triggered in ISO 8601 extended timestamp format",
+            "order": 1,
+            "title": "Timestamp",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of alert",
+            "order": 2,
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "investigationId",
+          "actors",
+          "timestamp",
+          "type",
+          "name",
+          "description",
+          "link"
+        ],
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJsonSchema": {
+        "definitions": {
+          "actor": {
+            "properties": {
+              "assets": {
+                "description": "The assets that are part of the investigation",
+                "items": {
+                  "$ref": "#/definitions/asset"
+                },
+                "order": 2,
+                "title": "Assets",
+                "type": "array"
+              },
+              "users": {
+                "description": "The users that are part of the investigation",
+                "items": {
+                  "$ref": "#/definitions/user"
+                },
+                "order": 1,
+                "title": "Users",
+                "type": "array"
+              }
+            },
+            "title": "Actor",
+            "type": "object"
+          },
+          "asset": {
+            "properties": {
+              "assetId": {
+                "description": "the ID of the asset",
+                "order": 1,
+                "title": "AssetId",
+                "type": "string"
+              },
+              "fqdn": {
+                "description": "The fully qualified domain name",
+                "order": 3,
+                "title": "Fqdn",
+                "type": "string"
+              },
+              "shortname": {
+                "description": "shortname of the asset",
+                "order": 2,
+                "title": "Shortname",
+                "type": "string"
+              }
+            },
+            "required": [
+              "shortname",
+              "assetId"
+            ],
+            "title": "Asset",
+            "type": "object"
+          },
+          "content": {
+            "properties": {
+              "domains": {
+                "description": "A list of domains to check",
+                "items": {
+                  "type": "string"
+                },
+                "order": 2,
+                "title": "Domains",
+                "type": "array"
+              },
+              "ipAddresses": {
+                "description": "A list of ip addresses to check",
+                "items": {
+                  "$ref": "#/definitions/ipAddress"
+                },
+                "order": 3,
+                "title": "IpAddresses",
+                "type": "array"
+              },
+              "processes": {
+                "description": "A list of processes to check",
+                "items": {
+                  "$ref": "#/definitions/process"
+                },
+                "order": 4,
+                "title": "Processes",
+                "type": "array"
+              },
+              "urls": {
+                "description": "A list of URLs to check",
+                "items": {
+                  "type": "string"
+                },
+                "order": 1,
+                "title": "Urls",
+                "type": "array"
+              }
+            },
+            "title": "Content",
+            "type": "object"
+          },
+          "hash": {
+            "properties": {
+              "hash": {
+                "description": "The actual hash",
+                "order": 1,
+                "title": "Hash",
+                "type": "string"
+              },
+              "type": {
+                "description": "The algorithm used to generate the hash",
+                "order": 2,
+                "title": "Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "hash",
+              "type"
+            ],
+            "title": "Hash",
+            "type": "object"
+          },
+          "ipAddress": {
+            "properties": {
+              "ip": {
+                "description": "The raw IP",
+                "order": 1,
+                "title": "Ip",
+                "type": "string"
+              },
+              "type": {
+                "description": "Denotes if an IP is internal or external",
+                "order": 2,
+                "title": "Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "ip",
+              "type"
+            ],
+            "title": "IpAddress",
+            "type": "object"
+          },
+          "process": {
+            "properties": {
+              "assetId": {
+                "description": "The asset id associated with the process",
+                "order": 1,
+                "title": "AssetId",
+                "type": "string"
+              },
+              "cmdLine": {
+                "description": "The raw value of the command line call used to invoke the process",
+                "order": 5,
+                "title": "CmdLine",
+                "type": "string"
+              },
+              "hashes": {
+                "description": "The list of hashes to check",
+                "items": {
+                  "$ref": "#/definitions/hash"
+                },
+                "order": 3,
+                "title": "Hashes",
+                "type": "array"
+              },
+              "name": {
+                "description": "The name of the process",
+                "order": 4,
+                "title": "Name",
+                "type": "string"
+              },
+              "processId": {
+                "description": "The PID from the running process on the asset",
+                "order": 2,
+                "title": "ProcessId",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "assetId",
+              "processId"
+            ],
+            "title": "Process",
+            "type": "object"
+          },
+          "user": {
+            "properties": {
+              "distinguishedName": {
+                "description": "The Active Directory distinguished name of the user",
+                "order": 2,
+                "title": "DistinguishedName",
+                "type": "string"
+              },
+              "emails": {
+                "description": "The email addresses associated with the user",
+                "items": {
+                  "type": "string"
+                },
+                "order": 3,
+                "title": "Emails",
+                "type": "array"
+              },
+              "name": {
+                "description": "The name of the user, as '<firstname> <lastname>' if available, or account name otherwise",
+                "order": 1,
+                "title": "Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "emails"
+            ],
+            "title": "User",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "actors": {
+            "$ref": "#/definitions/actor",
+            "description": "The insightIDR actors that are part of the investigation",
+            "order": 7,
+            "title": "Actors"
+          },
+          "contents": {
+            "$ref": "#/definitions/content",
+            "description": "The contents to enrich",
+            "order": 8,
+            "title": "Contents"
+          },
+          "description": {
+            "description": "The description of the alert",
+            "order": 4,
+            "title": "Description",
+            "type": "string"
+          },
+          "investigationId": {
+            "description": "The investigation id",
+            "order": 6,
+            "title": "InvestigationId",
+            "type": "string"
+          },
+          "link": {
+            "description": "The deep link to the investigation in insightIDR",
+            "order": 5,
+            "title": "Link",
+            "type": "string"
+          },
+          "name": {
+            "description": "The human-readable name of the alert",
+            "order": 3,
+            "title": "Name",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "The time the alert was triggered in ISO 8601 extended timestamp format",
+            "order": 1,
+            "title": "Timestamp",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of alert",
+            "order": 2,
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "investigationId",
+          "actors",
+          "timestamp",
+          "type",
+          "name",
+          "description",
+          "link"
+        ],
+        "title": "Variables",
+        "type": "object"
+      },
+      "tags": [],
+      "type": "trigger_api_idr"
+    }
+  },
+  "trigger_api_rh": {
+    "_source_workflow": "Remediation_Hub_Create_Jira_Ticket.icon",
+    "template": {
+      "id": "35cae84b-d12e-43e4-8f1a-f2bca7ca2f07",
+      "name": "Remediation Hub Trigger",
+      "description": "",
+      "input": null,
+      "inputJsonSchema": {
+        "description": "",
+        "properties": {
+          "assetCount": {
+            "description": "Number of assets affected by this remediation",
+            "title": "AssetCount",
+            "type": "number"
+          },
+          "assets": {
+            "description": "List of assets affected by the vulnerabilities",
+            "items": {
+              "properties": {
+                "cloudAccount": {
+                  "description": "Cloud account information for the asset",
+                  "properties": {
+                    "cloudType": {
+                      "description": "Type of cloud provider",
+                      "title": "CloudType",
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "Cloud account identifier",
+                      "title": "Id",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Name of the cloud account",
+                      "title": "Name",
+                      "type": "string"
+                    }
+                  },
+                  "title": "CloudAccount",
+                  "type": "object"
+                },
+                "id": {
+                  "description": "Resource identifier of the asset",
+                  "title": "Id",
+                  "type": "string"
+                },
+                "imageId": {
+                  "description": "Image ID of the asset, if applicable",
+                  "title": "ImageID",
+                  "type": "string"
+                },
+                "ipAddress": {
+                  "description": "IP address of the asset",
+                  "title": "IPAddress",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the asset",
+                  "title": "Name",
+                  "type": "string"
+                },
+                "osPlatform": {
+                  "description": "Operating system platform of the asset",
+                  "title": "OsPlatform",
+                  "type": "string"
+                },
+                "proofs": {
+                  "description": "Evidence proofs for the vulnerabilities on this asset",
+                  "items": {
+                    "properties": {
+                      "cves": {
+                        "description": "CVE identifier for the vulnerability",
+                        "title": "Cves",
+                        "type": "string"
+                      },
+                      "proofDescription": {
+                        "description": "Description of the vulnerability proof",
+                        "title": "ProofDescription",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "proofDescription",
+                      "cves"
+                    ],
+                    "title": "Proof",
+                    "type": "object"
+                  },
+                  "title": "Proofs",
+                  "type": "array"
+                },
+                "region": {
+                  "description": "Region where the asset is located",
+                  "title": "Region",
+                  "type": "string"
+                },
+                "sites": {
+                  "description": "List of sites associated with the asset",
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Sites",
+                  "type": "array"
+                },
+                "tags": {
+                  "description": "Tags associated with the asset",
+                  "items": {
+                    "properties": {
+                      "key": {
+                        "description": "Tag key",
+                        "title": "Key",
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "Tag value",
+                        "title": "Value",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ],
+                    "title": "Tag",
+                    "type": "object"
+                  },
+                  "title": "Tags",
+                  "type": "array"
+                },
+                "type": {
+                  "description": "Solution type of the asset",
+                  "title": "Type",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "title": "Asset",
+              "type": "object"
+            },
+            "title": "Assets",
+            "type": "array"
+          },
+          "cveCount": {
+            "description": "Number of CVEs associated with this remediation",
+            "title": "CveCount",
+            "type": "number"
+          },
+          "description": {
+            "description": "Detailed description of the remediation",
+            "title": "Description",
+            "type": "string"
+          },
+          "remediationId": {
+            "description": "The unique identifier for the remediation",
+            "title": "RemediationId",
+            "type": "string"
+          },
+          "title": {
+            "description": "The title of the remediation",
+            "title": "Title",
+            "type": "string"
+          },
+          "vulnerabilities": {
+            "description": "List of vulnerabilities associated with this remediation",
+            "items": {
+              "properties": {
+                "activeRisk": {
+                  "description": "Active risk score for the vulnerability",
+                  "title": "ActiveRisk",
+                  "type": "number"
+                },
+                "cvssScore": {
+                  "description": "CVSS Score for the vulnerability",
+                  "title": "CvssScore",
+                  "type": "number"
+                },
+                "severity": {
+                  "description": "Severity level of the vulnerability",
+                  "title": "Severity",
+                  "type": "object"
+                },
+                "vulnName": {
+                  "description": "Name of the vulnerability, typically a CVE identifier",
+                  "title": "VulnName",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "vulnName",
+                "cvssScore",
+                "activeRisk",
+                "severity"
+              ],
+              "title": "Vulnerability",
+              "type": "object"
+            },
+            "title": "Vulnerabilities",
+            "type": "array"
+          }
+        },
+        "required": [
+          "remediationId",
+          "title",
+          "description",
+          "cveCount",
+          "assetCount",
+          "vulnerabilities",
+          "assets"
+        ],
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJsonSchema": {
+        "description": "",
+        "properties": {
+          "assetCount": {
+            "description": "Number of assets affected by this remediation",
+            "title": "AssetCount",
+            "type": "number"
+          },
+          "assets": {
+            "description": "List of assets affected by the vulnerabilities",
+            "items": {
+              "properties": {
+                "cloudAccount": {
+                  "description": "Cloud account information for the asset",
+                  "properties": {
+                    "cloudType": {
+                      "description": "Type of cloud provider",
+                      "title": "CloudType",
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "Cloud account identifier",
+                      "title": "Id",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Name of the cloud account",
+                      "title": "Name",
+                      "type": "string"
+                    }
+                  },
+                  "title": "CloudAccount",
+                  "type": "object"
+                },
+                "id": {
+                  "description": "Resource identifier of the asset",
+                  "title": "Id",
+                  "type": "string"
+                },
+                "imageId": {
+                  "description": "Image ID of the asset, if applicable",
+                  "title": "ImageID",
+                  "type": "string"
+                },
+                "ipAddress": {
+                  "description": "IP address of the asset",
+                  "title": "IPAddress",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the asset",
+                  "title": "Name",
+                  "type": "string"
+                },
+                "osPlatform": {
+                  "description": "Operating system platform of the asset",
+                  "title": "OsPlatform",
+                  "type": "string"
+                },
+                "proofs": {
+                  "description": "Evidence proofs for the vulnerabilities on this asset",
+                  "items": {
+                    "properties": {
+                      "cves": {
+                        "description": "CVE identifier for the vulnerability",
+                        "title": "Cves",
+                        "type": "string"
+                      },
+                      "proofDescription": {
+                        "description": "Description of the vulnerability proof",
+                        "title": "ProofDescription",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "proofDescription",
+                      "cves"
+                    ],
+                    "title": "Proof",
+                    "type": "object"
+                  },
+                  "title": "Proofs",
+                  "type": "array"
+                },
+                "region": {
+                  "description": "Region where the asset is located",
+                  "title": "Region",
+                  "type": "string"
+                },
+                "sites": {
+                  "description": "List of sites associated with the asset",
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Sites",
+                  "type": "array"
+                },
+                "tags": {
+                  "description": "Tags associated with the asset",
+                  "items": {
+                    "properties": {
+                      "key": {
+                        "description": "Tag key",
+                        "title": "Key",
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "Tag value",
+                        "title": "Value",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ],
+                    "title": "Tag",
+                    "type": "object"
+                  },
+                  "title": "Tags",
+                  "type": "array"
+                },
+                "type": {
+                  "description": "Solution type of the asset",
+                  "title": "Type",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "title": "Asset",
+              "type": "object"
+            },
+            "title": "Assets",
+            "type": "array"
+          },
+          "cveCount": {
+            "description": "Number of CVEs associated with this remediation",
+            "title": "CveCount",
+            "type": "number"
+          },
+          "description": {
+            "description": "Detailed description of the remediation",
+            "title": "Description",
+            "type": "string"
+          },
+          "remediationId": {
+            "description": "The unique identifier for the remediation",
+            "title": "RemediationId",
+            "type": "string"
+          },
+          "title": {
+            "description": "The title of the remediation",
+            "title": "Title",
+            "type": "string"
+          },
+          "vulnerabilities": {
+            "description": "List of vulnerabilities associated with this remediation",
+            "items": {
+              "properties": {
+                "activeRisk": {
+                  "description": "Active risk score for the vulnerability",
+                  "title": "ActiveRisk",
+                  "type": "number"
+                },
+                "cvssScore": {
+                  "description": "CVSS Score for the vulnerability",
+                  "title": "CvssScore",
+                  "type": "number"
+                },
+                "severity": {
+                  "description": "Severity level of the vulnerability",
+                  "title": "Severity",
+                  "type": "object"
+                },
+                "vulnName": {
+                  "description": "Name of the vulnerability, typically a CVE identifier",
+                  "title": "VulnName",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "vulnName",
+                "cvssScore",
+                "activeRisk",
+                "severity"
+              ],
+              "title": "Vulnerability",
+              "type": "object"
+            },
+            "title": "Vulnerabilities",
+            "type": "array"
+          }
+        },
+        "required": [
+          "remediationId",
+          "title",
+          "description",
+          "cveCount",
+          "assetCount",
+          "vulnerabilities",
+          "assets"
+        ],
+        "title": "Variables",
+        "type": "object"
+      },
+      "tags": [],
+      "type": "trigger_api_rh"
+    }
+  },
+  "trigger_api_vm_webhook": {
+    "_source_workflow": "Alert_on_New_Unknown_Assets_Discovered_by_InsightVM_with_Slack.icon",
+    "template": {
+      "id": "4bbd9634-7081-4792-85f3-b56c90f75de8",
+      "identifier": "asset_found",
+      "name": "Asset Found Event",
+      "description": "",
+      "input": null,
+      "inputJsonSchema": {
+        "definitions": {
+          "summary": {
+            "properties": {
+              "agent_id": {
+                "description": "Identifier of agent that is on the asset",
+                "order": 4,
+                "title": "agent_id",
+                "type": "string"
+              },
+              "critical_vulnerability_count": {
+                "description": "Number of critical vulnerabilities on the asset",
+                "order": 9,
+                "title": "critical_vulnerability_count",
+                "type": "number"
+              },
+              "host_name": {
+                "description": "Asset hostname",
+                "order": 5,
+                "title": "host_name",
+                "type": "string"
+              },
+              "ip": {
+                "description": "Asset ip address",
+                "order": 1,
+                "title": "ip",
+                "type": "string"
+              },
+              "last_assessed_for_policy": {
+                "description": "Epoch time millis of last policy assessment",
+                "order": 12,
+                "title": "last_assessed_for_policy",
+                "type": "number"
+              },
+              "last_assessed_for_vulnerability": {
+                "description": "Epoch time millis of last vulnerability assessment",
+                "order": 11,
+                "title": "last_assessed_for_vulnerability",
+                "type": "number"
+              },
+              "last_scanned": {
+                "description": "Epoch time millis of last scanned",
+                "order": 7,
+                "title": "last_scanned",
+                "type": "number"
+              },
+              "mac": {
+                "description": "Asset mac address",
+                "order": 3,
+                "title": "mac",
+                "type": "string"
+              },
+              "moderate_vulnerability_count": {
+                "description": "Number of moderate vulnerabilities on the asset",
+                "order": 10,
+                "title": "moderate_vulnerability_count",
+                "type": "number"
+              },
+              "operating_system": {
+                "description": "Asset operating system",
+                "order": 2,
+                "title": "operating_system",
+                "type": "string"
+              },
+              "services_count": {
+                "description": "Number of services on the asset",
+                "order": 6,
+                "title": "services_count",
+                "type": "number"
+              },
+              "severe_vulnerability_count": {
+                "description": "Number of severe vulnerabilities on the asset",
+                "order": 8,
+                "title": "severe_vulnerability_count",
+                "type": "number"
+              },
+              "vulnerability_count": {
+                "description": "Total vulnerability count",
+                "order": 13,
+                "title": "vulnerability_count",
+                "type": "number"
+              }
+            },
+            "title": "summary",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "id": {
+            "description": "Asset ID",
+            "order": 2,
+            "title": "id",
+            "type": "string"
+          },
+          "summary": {
+            "$ref": "#/definitions/summary",
+            "description": "Object containing details of asset found",
+            "order": 1,
+            "title": "summary"
+          }
+        },
+        "type": "object"
+      },
+      "outputJsonSchema": {
+        "definitions": {
+          "summary": {
+            "properties": {
+              "agent_id": {
+                "description": "Identifier of agent that is on the asset",
+                "order": 4,
+                "title": "agent_id",
+                "type": "string"
+              },
+              "critical_vulnerability_count": {
+                "description": "Number of critical vulnerabilities on the asset",
+                "order": 9,
+                "title": "critical_vulnerability_count",
+                "type": "number"
+              },
+              "host_name": {
+                "description": "Asset hostname",
+                "order": 5,
+                "title": "host_name",
+                "type": "string"
+              },
+              "ip": {
+                "description": "Asset ip address",
+                "order": 1,
+                "title": "ip",
+                "type": "string"
+              },
+              "last_assessed_for_policy": {
+                "description": "Epoch time millis of last policy assessment",
+                "order": 12,
+                "title": "last_assessed_for_policy",
+                "type": "number"
+              },
+              "last_assessed_for_vulnerability": {
+                "description": "Epoch time millis of last vulnerability assessment",
+                "order": 11,
+                "title": "last_assessed_for_vulnerability",
+                "type": "number"
+              },
+              "last_scanned": {
+                "description": "Epoch time millis of last scanned",
+                "order": 7,
+                "title": "last_scanned",
+                "type": "number"
+              },
+              "mac": {
+                "description": "Asset mac address",
+                "order": 3,
+                "title": "mac",
+                "type": "string"
+              },
+              "moderate_vulnerability_count": {
+                "description": "Number of moderate vulnerabilities on the asset",
+                "order": 10,
+                "title": "moderate_vulnerability_count",
+                "type": "number"
+              },
+              "operating_system": {
+                "description": "Asset operating system",
+                "order": 2,
+                "title": "operating_system",
+                "type": "string"
+              },
+              "services_count": {
+                "description": "Number of services on the asset",
+                "order": 6,
+                "title": "services_count",
+                "type": "number"
+              },
+              "severe_vulnerability_count": {
+                "description": "Number of severe vulnerabilities on the asset",
+                "order": 8,
+                "title": "severe_vulnerability_count",
+                "type": "number"
+              },
+              "vulnerability_count": {
+                "description": "Total vulnerability count",
+                "order": 13,
+                "title": "vulnerability_count",
+                "type": "number"
+              }
+            },
+            "title": "summary",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "id": {
+            "description": "Asset ID",
+            "order": 2,
+            "title": "id",
+            "type": "string"
+          },
+          "summary": {
+            "$ref": "#/definitions/summary",
+            "description": "Object containing details of asset found",
+            "order": 1,
+            "title": "summary"
+          }
+        },
+        "type": "object"
+      },
+      "tags": [],
+      "type": "trigger_api_vm_webhook"
+    }
+  },
+  "trigger_chatops": {
+    "_source_workflow": "Check_Host_Block_Status_with_Check_Point_Firewall_from_Slack.icon",
+    "template": {
+      "id": "90bb6fba-75d1-4284-ad97-68331e220abf",
+      "name": "Check for IP Message",
+      "description": "",
+      "input": {
+        "matchChannel": "change_me",
+        "matchText": "block-status",
+        "type": "any"
+      },
+      "inputJsonSchema": {
+        "properties": {
+          "matchChannel": {
+            "description": "Regex to match for channel name",
+            "order": 1,
+            "title": "Match Channel",
+            "type": "string"
+          },
+          "matchText": {
+            "description": "Regex to match for Slack message content",
+            "order": 2,
+            "title": "Match Text",
+            "type": "string"
+          },
+          "type": {
+            "default": "any",
+            "description": "Desired Slack channel type: direct message to Slack app, group chats, or all channels",
+            "enum": [
+              "any",
+              "direct",
+              "group"
+            ],
+            "order": 3,
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJsonSchema": {
+        "definitions": {
+          "message": {
+            "properties": {
+              "channel": {
+                "description": "Channel name",
+                "order": 3,
+                "title": "Channel",
+                "type": "string"
+              },
+              "channel_id": {
+                "description": "Slack channel ID",
+                "order": 4,
+                "title": "Channel ID",
+                "type": "string"
+              },
+              "text": {
+                "description": "Text",
+                "order": 5,
+                "title": "Text",
+                "type": "string"
+              },
+              "ts": {
+                "description": "Timestamp",
+                "order": 6,
+                "title": "Ts",
+                "type": "string"
+              },
+              "user": {
+                "description": "User name",
+                "order": 1,
+                "title": "User",
+                "type": "string"
+              },
+              "user_id": {
+                "description": "Slack User ID",
+                "order": 2,
+                "title": "User ID",
+                "type": "string"
+              }
+            },
+            "title": "Message",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "display_name": {
+            "description": "User display name",
+            "order": 4,
+            "title": "Display Name",
+            "type": "string"
+          },
+          "message": {
+            "$ref": "#/definitions/message",
+            "description": "Message",
+            "order": 1,
+            "title": "Message"
+          },
+          "timestamp": {
+            "description": "Timestamp",
+            "order": 3,
+            "title": "Timestamp",
+            "type": "string"
+          },
+          "type": {
+            "description": "Message Type",
+            "order": 2,
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "title": "Variables",
+        "type": "object"
+      },
+      "tags": [],
+      "type": "trigger_chatops",
+      "chatOpsAppName": "slack",
+      "chatOpsIdentifier": "message"
+    }
+  },
+  "trigger_plugin": {
+    "_source_workflow": "Sync_Blacklisted_URLs_Across_Zscaler_and_Palo_Alto_Firewall.icon",
+    "template": {
+      "id": "1171fe36-a441-47fa-b5f0-01bafaa94d33",
+      "identifier": "hourly",
+      "name": "Sync Blacklists",
+      "description": "",
+      "input": {
+        "message": "",
+        "minute": 1
+      },
+      "inputJsonSchema": {
+        "properties": {
+          "message": {
+            "description": "The message to send (optional)",
+            "order": 2,
+            "title": "Message",
+            "type": "string"
+          },
+          "minute": {
+            "description": "The minute after the hour to trigger the workflow",
+            "order": 1,
+            "title": "Minute",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "minute"
+        ],
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJsonSchema": {
+        "properties": {
+          "message": {
+            "description": "Message",
+            "order": 1,
+            "title": "Message",
+            "type": "string"
+          },
+          "time": {
+            "description": "Time",
+            "order": 2,
+            "title": "Time",
+            "type": "string"
+          }
+        },
+        "title": "Variables",
+        "type": "object"
+      },
+      "tags": [],
+      "type": "trigger_plugin",
+      "plugin": {
+        "name": "Timers",
+        "slugVendor": "rapid7",
+        "slugName": "timers",
+        "slugVersion": "2.0.5",
+        "imageData": "https://us.cdn-assets.connect.insight.rapid7.com/icons/rapid7/timers/2.0.5/icon.png"
+      }
+    }
+  }
+}

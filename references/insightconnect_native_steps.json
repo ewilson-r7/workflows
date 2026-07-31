@@ -1,0 +1,423 @@
+{
+  "kom": {
+    "komandVersion": "1.183.51-477bc97a1",
+    "komFileVersion": "2.0.0",
+    "exportedAt": "2026-03-18T12:55:57.178157416Z",
+    "workflowVersions": [
+      {
+        "name": "native_step_template",
+        "type": "runnable",
+        "version": "",
+        "description": "",
+        "graph": {
+          "edges": {
+            "1f42571c-e91d-441a-af52-4ed9748fd42f": {
+              "id": "1f42571c-e91d-441a-af52-4ed9748fd42f",
+              "name": "Stop",
+              "description": "Stop the workflow",
+              "parentNodeId": "",
+              "fromNodeId": "6b29310f-4c7a-4be7-8a42-612bf51f1a93",
+              "toNodeId": ""
+            },
+            "268d38fd-c386-4837-b3e6-718cb6e08960": {
+              "id": "268d38fd-c386-4837-b3e6-718cb6e08960",
+              "name": "No",
+              "description": "Go down the no path",
+              "parentNodeId": "",
+              "fromNodeId": "9841f1e9-46a8-486e-9e1e-f1c5427d6b49",
+              "toNodeId": ""
+            },
+            "3987a87f-2b94-42a6-971c-6ebc4b9c2a4f": {
+              "id": "3987a87f-2b94-42a6-971c-6ebc4b9c2a4f",
+              "name": "",
+              "description": "",
+              "parentNodeId": "",
+              "fromNodeId": "d782da4f-7802-49de-b88d-f86c53c2b395",
+              "toNodeId": "c206c168-02b0-45f6-af76-be3d0a314f78"
+            },
+            "4430f052-35a9-4456-9c6d-b1e72b76c8ff": {
+              "id": "4430f052-35a9-4456-9c6d-b1e72b76c8ff",
+              "name": "",
+              "description": "",
+              "parentNodeId": "",
+              "fromNodeId": "912fd916-cd3e-4b33-a0bf-2ba92cc73e12",
+              "toNodeId": "bbd9fda0-756b-4464-b966-1ee4e1f7e93a"
+            },
+            "611b9573-2da2-4aeb-a5ce-f9f2e9277c7f": {
+              "id": "611b9573-2da2-4aeb-a5ce-f9f2e9277c7f",
+              "name": "",
+              "description": "",
+              "parentNodeId": "c206c168-02b0-45f6-af76-be3d0a314f78",
+              "fromNodeId": "59404ac3-3859-43c4-a1b6-2d05e5e92068",
+              "toNodeId": ""
+            },
+            "93d9ed06-aa57-4454-95c0-f644099a2d6c": {
+              "id": "93d9ed06-aa57-4454-95c0-f644099a2d6c",
+              "name": "",
+              "description": "",
+              "parentNodeId": "c206c168-02b0-45f6-af76-be3d0a314f78",
+              "fromNodeId": "c206c168-02b0-45f6-af76-be3d0a314f78",
+              "toNodeId": "59404ac3-3859-43c4-a1b6-2d05e5e92068"
+            },
+            "a28b3131-08eb-4fbb-9ab3-0bef5ee4a5a1": {
+              "id": "a28b3131-08eb-4fbb-9ab3-0bef5ee4a5a1",
+              "name": "",
+              "description": "",
+              "parentNodeId": "",
+              "fromNodeId": "c206c168-02b0-45f6-af76-be3d0a314f78",
+              "toNodeId": "9841f1e9-46a8-486e-9e1e-f1c5427d6b49"
+            },
+            "a5d3196a-f40f-4506-b820-422a5d55850f": {
+              "id": "a5d3196a-f40f-4506-b820-422a5d55850f",
+              "name": "Proceed",
+              "description": "Proceed with the workflow",
+              "parentNodeId": "",
+              "fromNodeId": "6b29310f-4c7a-4be7-8a42-612bf51f1a93",
+              "toNodeId": ""
+            },
+            "ac5ce49b-b8d9-4715-91ed-2d19684f1289": {
+              "id": "ac5ce49b-b8d9-4715-91ed-2d19684f1289",
+              "name": "Yes",
+              "description": "Go down the yes path",
+              "parentNodeId": "",
+              "fromNodeId": "9841f1e9-46a8-486e-9e1e-f1c5427d6b49",
+              "toNodeId": "6b29310f-4c7a-4be7-8a42-612bf51f1a93"
+            },
+            "b76f0509-75bf-484b-a234-07e41af9ee09": {
+              "id": "b76f0509-75bf-484b-a234-07e41af9ee09",
+              "name": "",
+              "description": "",
+              "parentNodeId": "",
+              "fromNodeId": "bbd9fda0-756b-4464-b966-1ee4e1f7e93a",
+              "toNodeId": "53cd3fc3-0a4e-4e48-8045-e6e089a29608"
+            },
+            "fc02c144-b910-40a9-b283-00e42175a3a5": {
+              "id": "fc02c144-b910-40a9-b283-00e42175a3a5",
+              "name": "",
+              "description": "",
+              "parentNodeId": "",
+              "fromNodeId": "53cd3fc3-0a4e-4e48-8045-e6e089a29608",
+              "toNodeId": "d782da4f-7802-49de-b88d-f86c53c2b395"
+            }
+          },
+          "nodes": {
+            "53cd3fc3-0a4e-4e48-8045-e6e089a29608": {
+              "id": "53cd3fc3-0a4e-4e48-8045-e6e089a29608",
+              "parentNodeId": ""
+            },
+            "59404ac3-3859-43c4-a1b6-2d05e5e92068": {
+              "id": "59404ac3-3859-43c4-a1b6-2d05e5e92068",
+              "parentNodeId": "c206c168-02b0-45f6-af76-be3d0a314f78"
+            },
+            "6b29310f-4c7a-4be7-8a42-612bf51f1a93": {
+              "id": "6b29310f-4c7a-4be7-8a42-612bf51f1a93",
+              "parentNodeId": ""
+            },
+            "912fd916-cd3e-4b33-a0bf-2ba92cc73e12": {
+              "id": "912fd916-cd3e-4b33-a0bf-2ba92cc73e12",
+              "parentNodeId": ""
+            },
+            "9841f1e9-46a8-486e-9e1e-f1c5427d6b49": {
+              "id": "9841f1e9-46a8-486e-9e1e-f1c5427d6b49",
+              "parentNodeId": ""
+            },
+            "bbd9fda0-756b-4464-b966-1ee4e1f7e93a": {
+              "id": "bbd9fda0-756b-4464-b966-1ee4e1f7e93a",
+              "parentNodeId": ""
+            },
+            "c206c168-02b0-45f6-af76-be3d0a314f78": {
+              "id": "c206c168-02b0-45f6-af76-be3d0a314f78",
+              "parentNodeId": ""
+            },
+            "d782da4f-7802-49de-b88d-f86c53c2b395": {
+              "id": "d782da4f-7802-49de-b88d-f86c53c2b395",
+              "parentNodeId": ""
+            }
+          }
+        },
+        "steps": {
+          "53cd3fc3-0a4e-4e48-8045-e6e089a29608": {
+            "nodeId": "53cd3fc3-0a4e-4e48-8045-e6e089a29608",
+            "name": "Artifact",
+            "type": "artifact",
+            "continueOnFailure": false,
+            "isDisabled": false,
+            "parameters": {
+              "input": {
+                "content": "### This is a markdown enabled field.\n---"
+              },
+              "type": "markdown"
+            },
+            "defaultInputJSONSchema": null,
+            "defaultOutputJSONSchema": null,
+            "outputJSONSchema": null,
+            "defaultImageData": "https://us2.cdn-assets.connect.insight.rapid7.com/step-type-icons/artifact.svg",
+            "connectionType": "NONE",
+            "caseManagementInputJsonSchema": null,
+            "caseManagementOutputJsonSchema": null
+          },
+          "59404ac3-3859-43c4-a1b6-2d05e5e92068": {
+            "nodeId": "59404ac3-3859-43c4-a1b6-2d05e5e92068",
+            "name": "Loop Data",
+            "type": "artifact",
+            "continueOnFailure": false,
+            "isDisabled": false,
+            "parameters": {
+              "input": {
+                "content": "This is data from the loop"
+              },
+              "type": "markdown"
+            },
+            "defaultInputJSONSchema": null,
+            "defaultOutputJSONSchema": null,
+            "outputJSONSchema": null,
+            "defaultImageData": "https://us2.cdn-assets.connect.insight.rapid7.com/step-type-icons/artifact.svg",
+            "connectionType": "NONE",
+            "caseManagementInputJsonSchema": null,
+            "caseManagementOutputJsonSchema": null
+          },
+          "6b29310f-4c7a-4be7-8a42-612bf51f1a93": {
+            "nodeId": "6b29310f-4c7a-4be7-8a42-612bf51f1a93",
+            "name": "Human Decision",
+            "type": "human_decision",
+            "continueOnFailure": false,
+            "isDisabled": false,
+            "parameters": {
+              "defaultEdgeId": "",
+              "notifications": {
+                "artifactIds": [
+                  "53cd3fc3-0a4e-4e48-8045-e6e089a29608"
+                ],
+                "userIdsForEmail": []
+              },
+              "stepControlParams": [
+                {
+                  "edgeId": "1f42571c-e91d-441a-af52-4ed9748fd42f",
+                  "expression": {},
+                  "expressionText": "",
+                  "isTimeoutOnly": false,
+                  "nodeId": "6b29310f-4c7a-4be7-8a42-612bf51f1a93"
+                },
+                {
+                  "edgeId": "a5d3196a-f40f-4506-b820-422a5d55850f",
+                  "expression": {},
+                  "expressionText": "",
+                  "isTimeoutOnly": false,
+                  "nodeId": "6b29310f-4c7a-4be7-8a42-612bf51f1a93"
+                }
+              ],
+              "timeout": 3600,
+              "timeoutDisplayUnit": "minutes",
+              "timeoutEdgeId": "1f42571c-e91d-441a-af52-4ed9748fd42f"
+            },
+            "defaultInputJSONSchema": null,
+            "defaultOutputJSONSchema": null,
+            "outputJSONSchema": null,
+            "defaultImageData": "https://us2.cdn-assets.connect.insight.rapid7.com/step-type-icons/human-decision.svg",
+            "connectionType": "NONE",
+            "caseManagementInputJsonSchema": null,
+            "caseManagementOutputJsonSchema": null
+          },
+          "912fd916-cd3e-4b33-a0bf-2ba92cc73e12": {
+            "nodeId": "912fd916-cd3e-4b33-a0bf-2ba92cc73e12",
+            "name": "RUN",
+            "type": "trigger",
+            "continueOnFailure": false,
+            "isDisabled": false,
+            "triggerId": "d4e243db-0a74-442c-aa8c-241f6ce24e91",
+            "defaultInputJSONSchema": {
+              "definitions": {},
+              "properties": {},
+              "type": "object"
+            },
+            "defaultOutputJSONSchema": {
+              "definitions": {},
+              "properties": {},
+              "type": "object"
+            },
+            "outputJSONSchema": null,
+            "defaultImageData": "https://us2.cdn-assets.connect.insight.rapid7.com/step-type-icons/trigger-api.svg",
+            "connectionType": "NONE",
+            "caseManagementInputJsonSchema": null,
+            "caseManagementOutputJsonSchema": null
+          },
+          "9841f1e9-46a8-486e-9e1e-f1c5427d6b49": {
+            "nodeId": "9841f1e9-46a8-486e-9e1e-f1c5427d6b49",
+            "name": "Automated Decision",
+            "type": "automated_decision",
+            "continueOnFailure": false,
+            "isDisabled": false,
+            "parameters": {
+              "defaultEdgeId": "268d38fd-c386-4837-b3e6-718cb6e08960",
+              "stepControlParams": [
+                {
+                  "edgeId": "ac5ce49b-b8d9-4715-91ed-2d19684f1289",
+                  "expression": {
+                    "type": "literal",
+                    "value": true
+                  },
+                  "expressionText": "true"
+                },
+                {
+                  "edgeId": "268d38fd-c386-4837-b3e6-718cb6e08960",
+                  "expression": {},
+                  "expressionText": ""
+                }
+              ]
+            },
+            "defaultInputJSONSchema": null,
+            "defaultOutputJSONSchema": null,
+            "outputJSONSchema": null,
+            "defaultImageData": "https://us2.cdn-assets.connect.insight.rapid7.com/step-type-icons/automated-decision.svg",
+            "connectionType": "NONE",
+            "caseManagementInputJsonSchema": null,
+            "caseManagementOutputJsonSchema": null
+          },
+          "bbd9fda0-756b-4464-b966-1ee4e1f7e93a": {
+            "nodeId": "bbd9fda0-756b-4464-b966-1ee4e1f7e93a",
+            "name": "Filter",
+            "type": "filter",
+            "continueOnFailure": false,
+            "isDisabled": false,
+            "parameters": {
+              "stepControlParam": {
+                "edgeId": "b76f0509-75bf-484b-a234-07e41af9ee09",
+                "expression": {
+                  "type": "literal",
+                  "value": false
+                },
+                "expressionText": "false"
+              },
+              "stopOnMatch": true
+            },
+            "defaultInputJSONSchema": null,
+            "defaultOutputJSONSchema": null,
+            "outputJSONSchema": null,
+            "defaultImageData": "https://us2.cdn-assets.connect.insight.rapid7.com/step-type-icons/filter.svg",
+            "connectionType": "NONE",
+            "caseManagementInputJsonSchema": null,
+            "caseManagementOutputJsonSchema": null
+          },
+          "c206c168-02b0-45f6-af76-be3d0a314f78": {
+            "nodeId": "c206c168-02b0-45f6-af76-be3d0a314f78",
+            "name": "Loop",
+            "type": "loop",
+            "continueOnFailure": false,
+            "isDisabled": false,
+            "parameters": {
+              "customOutput": [
+                {
+                  "input": {
+                    "expression": {
+                      "args": [
+                        {
+                          "name": "59404ac3-3859-43c4-a1b6-2d05e5e92068.content",
+                          "type": "variable"
+                        }
+                      ],
+                      "name": "is_defined",
+                      "type": "function"
+                    },
+                    "expressionText": "is_defined({{[59404ac3-3859-43c4-a1b6-2d05e5e92068].[content]}})",
+                    "value": "{{[59404ac3-3859-43c4-a1b6-2d05e5e92068].[content]}}",
+                    "valueType": null
+                  },
+                  "name": "loop_output",
+                  "outputType": "array"
+                }
+              ],
+              "innerEdgeId": "93d9ed06-aa57-4454-95c0-f644099a2d6c",
+              "nextEdgeId": "a28b3131-08eb-4fbb-9ab3-0bef5ee4a5a1",
+              "repeatCount": 10,
+              "repeatDelay": 5
+            },
+            "defaultInputJSONSchema": null,
+            "defaultOutputJSONSchema": null,
+            "outputJSONSchema": {
+              "properties": {
+                "loop_output": {
+                  "description": "Custom output: \"loop_output\"",
+                  "title": "loop_output",
+                  "type": "array"
+                }
+              },
+              "title": "Variables",
+              "type": "object"
+            },
+            "defaultImageData": "",
+            "connectionType": "NONE",
+            "caseManagementInputJsonSchema": null,
+            "caseManagementOutputJsonSchema": null
+          },
+          "d782da4f-7802-49de-b88d-f86c53c2b395": {
+            "nodeId": "d782da4f-7802-49de-b88d-f86c53c2b395",
+            "name": "Pattern Match",
+            "type": "pattern_match",
+            "continueOnFailure": false,
+            "isDisabled": false,
+            "parameters": {
+              "captureAll": true,
+              "expressionText": "Investigate {{domain:/[a-z]+.com/}} and store google.com in the output variable domain",
+              "expressions": [
+                {
+                  "type": "text",
+                  "value": "Investigate "
+                },
+                {
+                  "type": "variable",
+                  "value": {
+                    "ident": "domain",
+                    "regex": "[a-z]+.com"
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": " and store google.com in the output variable domain"
+                }
+              ],
+              "ignoreCase": true,
+              "input": "{{[53cd3fc3-0a4e-4e48-8045-e6e089a29608].[content]}}"
+            },
+            "defaultInputJSONSchema": null,
+            "defaultOutputJSONSchema": null,
+            "outputJSONSchema": null,
+            "defaultImageData": "https://us2.cdn-assets.connect.insight.rapid7.com/step-type-icons/pattern-match.svg",
+            "connectionType": "NONE",
+            "caseManagementInputJsonSchema": null,
+            "caseManagementOutputJsonSchema": null
+          }
+        },
+        "tags": [],
+        "humanCostSeconds": 0,
+        "humanCostDisplayUnit": "minutes",
+        "parameters": {
+          "definitionSchema": null
+        },
+        "summary": ""
+      }
+    ],
+    "triggers": [
+      {
+        "id": "d4e243db-0a74-442c-aa8c-241f6ce24e91",
+        "name": "RUN",
+        "description": "",
+        "input": null,
+        "inputJsonSchema": {
+          "definitions": {},
+          "properties": {},
+          "type": "object"
+        },
+        "outputJsonSchema": {
+          "definitions": {},
+          "properties": {},
+          "type": "object"
+        },
+        "tags": [],
+        "type": "trigger_api",
+        "options": {
+          "webhookEnabled": true
+        }
+      }
+    ]
+  }
+}

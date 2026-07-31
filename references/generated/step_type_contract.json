@@ -1,0 +1,464 @@
+{
+  "action": {
+    "occurrences": 1325,
+    "bucket": "plugin_action",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "identifier",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "plugin",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "isCloud": 1295,
+      "caseManagementInputJsonSchema": 369,
+      "caseManagementOutputJsonSchema": 369
+    },
+    "outputJSONSchema_rule": "null (an object ONLY for custom-output actions like python_3_script/jq that expose named outputs)",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "populated_object": 1325
+      },
+      "defaultOutputJSONSchema": {
+        "populated_object": 1325
+      },
+      "outputJSONSchema": {
+        "null": 1300,
+        "populated_object": 25
+      }
+    },
+    "notes": "Plugin action step. Always has plugin{name,slugVendor,slugName,slugVersion,imageData}, identifier (action name), connection, and isCloud. parameters.input mirrors the action's declared input schema."
+  },
+  "action_chatops": {
+    "occurrences": 484,
+    "bucket": "chatops",
+    "always_present_keys": [
+      "chatOpsAppName",
+      "chatOpsIdentifier",
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 76,
+      "caseManagementOutputJsonSchema": 76
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "populated_object": 484
+      },
+      "defaultOutputJSONSchema": {
+        "populated_object": 484
+      },
+      "outputJSONSchema": {
+        "null": 484
+      }
+    },
+    "notes": "Slack action step (send message / prompt). chatOpsAppName='slack' + chatOpsIdentifier at step root. No plugin object."
+  },
+  "artifact": {
+    "occurrences": 609,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 132,
+      "caseManagementOutputJsonSchema": 132
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 609
+      },
+      "defaultOutputJSONSchema": {
+        "null": 609
+      },
+      "outputJSONSchema": {
+        "null": 609
+      }
+    },
+    "notes": "Markdown output card. parameters={input:{content:'...markdown...'}, type:'markdown'}. All schema fields null."
+  },
+  "automated_decision": {
+    "occurrences": 617,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 168,
+      "caseManagementOutputJsonSchema": 168
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 617
+      },
+      "defaultOutputJSONSchema": {
+        "null": 617
+      },
+      "outputJSONSchema": {
+        "null": 617
+      }
+    },
+    "notes": "Branching by expression. parameters.stepControlParams[] each with edgeId + expression AST + expressionText; plus defaultEdgeId."
+  },
+  "break": {
+    "occurrences": 27,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 16,
+      "caseManagementOutputJsonSchema": 16
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 27
+      },
+      "defaultOutputJSONSchema": {
+        "null": 27
+      },
+      "outputJSONSchema": {
+        "null": 27
+      }
+    },
+    "notes": "Breaks out of an enclosing loop. Standard native step keys, no special params."
+  },
+  "decision_chatops": {
+    "occurrences": 25,
+    "bucket": "chatops",
+    "always_present_keys": [
+      "chatOpsAppName",
+      "chatOpsIdentifier",
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {},
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "populated_object": 25
+      },
+      "defaultOutputJSONSchema": {
+        "populated_object": 25
+      },
+      "outputJSONSchema": {
+        "null": 25
+      }
+    },
+    "notes": "Slack interactive decision (buttons). chatOpsAppName='slack' + chatOpsIdentifier."
+  },
+  "filter": {
+    "occurrences": 20,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 11,
+      "caseManagementOutputJsonSchema": 11
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 20
+      },
+      "defaultOutputJSONSchema": {
+        "null": 20
+      },
+      "outputJSONSchema": {
+        "null": 20
+      }
+    },
+    "notes": "Single-condition gate. parameters has stepControlParam (singular) + stopOnMatch."
+  },
+  "helpers": {
+    "occurrences": 14,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "helperIdentifier",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "globalArtifact": 13,
+      "caseManagementInputJsonSchema": 8,
+      "caseManagementOutputJsonSchema": 8
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 14
+      },
+      "defaultOutputJSONSchema": {
+        "null": 14
+      },
+      "outputJSONSchema": {
+        "null": 14
+      }
+    },
+    "notes": "Global artifact / helper step. Adds helperIdentifier and (usually) globalArtifact keys."
+  },
+  "human_decision": {
+    "occurrences": 7,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 3,
+      "caseManagementOutputJsonSchema": 3
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 7
+      },
+      "defaultOutputJSONSchema": {
+        "null": 7
+      },
+      "outputJSONSchema": {
+        "null": 7
+      }
+    },
+    "notes": "Waits for a human choice. parameters has defaultEdgeId, notifications, stepControlParams[], timeout, timeoutDisplayUnit, timeoutEdgeId."
+  },
+  "join": {
+    "occurrences": 85,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 26,
+      "caseManagementOutputJsonSchema": 26
+    },
+    "outputJSONSchema_rule": "object ALWAYS (empty {properties:{},title:Variables,type:object} or populated) - NEVER null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 85
+      },
+      "defaultOutputJSONSchema": {
+        "populated_object": 38,
+        "empty_object": 47
+      },
+      "outputJSONSchema": {
+        "populated_object": 38,
+        "empty_object": 47
+      }
+    },
+    "notes": "Waits for parallel branches to converge; carries an outputJSONSchema object (and defaultOutputJSONSchema)."
+  },
+  "loop": {
+    "occurrences": 233,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 67,
+      "caseManagementOutputJsonSchema": 67
+    },
+    "outputJSONSchema_rule": "object ALWAYS (empty or populated with customOutput vars) - NEVER null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 233
+      },
+      "defaultOutputJSONSchema": {
+        "null": 233
+      },
+      "outputJSONSchema": {
+        "empty_object": 174,
+        "populated_object": 58,
+        "null": 1
+      }
+    },
+    "notes": "Iterates a body subgraph. parameters has innerEdgeId, nextEdgeId, repeatCount/repeatDelay or a collection; carries an outputJSONSchema object."
+  },
+  "pattern_match": {
+    "occurrences": 84,
+    "bucket": "native",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "parameters",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "caseManagementInputJsonSchema": 17,
+      "caseManagementOutputJsonSchema": 17
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "null": 84
+      },
+      "defaultOutputJSONSchema": {
+        "null": 84
+      },
+      "outputJSONSchema": {
+        "null": 84
+      }
+    },
+    "notes": "Regex/variable extraction. parameters has expressions[], expressionText, input, captureAll, ignoreCase."
+  },
+  "trigger": {
+    "occurrences": 234,
+    "bucket": "native_or_plugin_trigger",
+    "always_present_keys": [
+      "connectionType",
+      "continueOnFailure",
+      "defaultImageData",
+      "defaultInputJSONSchema",
+      "defaultOutputJSONSchema",
+      "isDisabled",
+      "name",
+      "nodeId",
+      "outputJSONSchema",
+      "triggerId",
+      "type"
+    ],
+    "sometimes_present_keys": {
+      "parameters": 175,
+      "identifier": 103,
+      "plugin": 91,
+      "chatOpsAppName": 82,
+      "chatOpsIdentifier": 82,
+      "caseManagementInputJsonSchema": 58,
+      "caseManagementOutputJsonSchema": 58,
+      "description": 53
+    },
+    "outputJSONSchema_rule": "null",
+    "schema_state_distribution": {
+      "defaultInputJSONSchema": {
+        "populated_object": 231,
+        "empty_object": 3
+      },
+      "defaultOutputJSONSchema": {
+        "populated_object": 231,
+        "empty_object": 3
+      },
+      "outputJSONSchema": {
+        "null": 231,
+        "empty_object": 3
+      }
+    },
+    "notes": "The workflow's single entry point. Has triggerId matching the kom.triggers[] entry UUID. Plugin triggers add plugin+identifier+connection; Slack adds chatOpsAppName/chatOpsIdentifier; native API/scheduled triggers have neither."
+  }
+}

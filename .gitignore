@@ -1,0 +1,17 @@
+# Generated output bundles (user-specific, don't track)
+output/
+
+# Analysis intermediate output
+analysis/output/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

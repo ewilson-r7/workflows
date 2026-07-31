@@ -1,0 +1,170 @@
+{
+  "name": "IDR Investigation Title Match with Teams Notification",
+  "description": "Triggers on new InsightIDR investigations and checks if the title matches a specific string. If it matches, sends investigation details to Microsoft Teams. If not, creates an artifact noting no action was taken.",
+  "humanCostSeconds": 120,
+  "humanCostDisplayUnit": "minutes",
+  "tags": ["Alerting & Notifications"],
+  "parameters": {
+    "Teams Team": {
+      "type": "string",
+      "description": "The Microsoft Teams team name for notifications",
+      "required": true
+    },
+    "Teams Channel": {
+      "type": "string",
+      "description": "The Microsoft Teams channel name for notifications",
+      "required": true
+    }
+  },
+  "trigger": {
+    "key": "trigger",
+    "kind": "plugin",
+    "name": "Get New Investigations",
+    "identifier": "get_new_investigations",
+    "description": "Polls InsightIDR for new investigations",
+    "plugin": {
+      "name": "Rapid7 InsightIDR",
+      "slugVendor": "rapid7",
+      "slugName": "rapid7_insightidr",
+      "slugVersion": "12.0.9",
+      "imageData": ""
+    },
+    "input": {
+      "frequency": 15,
+      "search": []
+    },
+    "inputJsonSchema": {
+      "properties": {
+        "frequency": {
+          "type": "integer",
+          "title": "Frequency",
+          "description": "Poll frequency in seconds",
+          "default": 15,
+          "order": 1
+        },
+        "search": {
+          "type": "array",
+          "title": "Search",
+          "description": "The criteria for which entities to return",
+          "items": {"type": "object"},
+          "order": 2
+        }
+      },
+      "title": "Variables",
+      "type": "object"
+    },
+    "outputJsonSchema": {
+      "definitions": {
+        "investigation": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string", "title": "Title", "order": 1},
+            "rrn": {"type": "string", "title": "RRN", "order": 2},
+            "status": {"type": "string", "title": "Status", "order": 3},
+            "priority": {"type": "string", "title": "Priority", "order": 4},
+            "source": {"type": "string", "title": "Source", "order": 5},
+            "created_time": {"type": "string", "title": "Created Time", "order": 6}
+          },
+          "title": "Investigation"
+        }
+      },
+      "properties": {
+        "investigation": {
+          "$ref": "#/definitions/investigation",
+          "title": "Investigation",
+          "description": "A new investigation",
+          "order": 1
+        }
+      },
+      "required": ["investigation"],
+      "title": "Variables",
+      "type": "object"
+    }
+  },
+  "steps": [
+    {
+      "key": "check_title",
+      "type": "automated_decision",
+      "name": "Title Match",
+      "parameters": {
+        "defaultEdgeId": {"edgeLabel": "no_match"},
+        "stepControlParams": [
+          {
+            "edgeId": {"edgeLabel": "match"},
+            "expression": {
+              "left": {
+                "name": "$trigger.investigation.title",
+                "type": "variable"
+              },
+              "op": "=",
+              "right": {
+                "type": "literal",
+                "value": "Heads Up New Investigation"
+              },
+              "type": "binary"
+            },
+            "expressionText": "{{$trigger.investigation.title}} = \"Heads Up New Investigation\""
+          },
+          {
+            "edgeId": {"edgeLabel": "no_match"},
+            "expression": {},
+            "expressionText": ""
+          }
+        ]
+      }
+    },
+    {
+      "key": "send_teams",
+      "type": "action",
+      "name": "Send Teams Message",
+      "plugin": {
+        "name": "Microsoft Teams",
+        "slugVendor": "rapid7",
+        "slugName": "microsoft_teams",
+        "slugVersion": "7.0.6",
+        "imageData": ""
+      },
+      "identifier": "send_html_message",
+      "input": {
+        "team_name": "{{$workflow.Teams Team}}",
+        "channel_name": "{{$workflow.Teams Channel}}",
+        "message_content": "<h3>Investigation Title Match</h3><p><b>Title:</b> {{$trigger.investigation.title}}</p><p><b>Priority:</b> {{$trigger.investigation.priority}}</p><p><b>Status:</b> {{$trigger.investigation.status}}</p><p><b>Source:</b> {{$trigger.investigation.source}}</p><p><b>Created:</b> {{$trigger.investigation.created_time}}</p><p><b>RRN:</b> {{$trigger.investigation.rrn}}</p>",
+        "thread_id": ""
+      },
+      "defaultInputJSONSchema": {
+        "properties": {
+          "team_name": {"type": "string", "title": "Team Name", "description": "Team name", "order": 1},
+          "channel_name": {"type": "string", "title": "Channel Name", "description": "Channel name", "order": 2},
+          "thread_id": {"type": "string", "title": "Thread ID", "description": "To post in a thread, select parent message ID", "order": 3},
+          "message_content": {"type": "string", "title": "Message Content", "description": "HTML content to send", "order": 4}
+        },
+        "required": ["team_name", "channel_name", "message_content"],
+        "title": "Variables",
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "definitions": {
+          "message": {"type": "object", "properties": {"id": {"type": "string"}}, "title": "Message"}
+        },
+        "properties": {
+          "message": {"$ref": "#/definitions/message", "title": "Message", "description": "The message object that was created", "order": 1}
+        },
+        "title": "Variables",
+        "type": "object"
+      }
+    },
+    {
+      "key": "no_action",
+      "type": "artifact",
+      "name": "No Match",
+      "content": "## No Action Taken\n\nInvestigation title `{{$trigger.investigation.title}}` does not match the expected value. No notification sent."
+    }
+  ],
+  "edges": [
+    {"from": "trigger", "to": "check_title"},
+    {"from": "check_title", "to": "send_teams", "label": "match", "edgeName": "Yes"},
+    {"from": "check_title", "to": "no_action", "label": "no_match", "edgeName": "No"},
+    {"from": "send_teams", "to": ""},
+    {"from": "no_action", "to": ""}
+  ]
+}

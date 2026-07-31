@@ -1,0 +1,542 @@
+{
+  "action": {
+    "_source_workflow": "Sync_Blacklisted_URLs_Across_Zscaler_and_Palo_Alto_Firewall.icon",
+    "template": {
+      "nodeId": "927c5d5e-e002-4f1f-8f5f-8e067f50bda7",
+      "name": "Get Updated Zscaler Blacklist",
+      "type": "action",
+      "plugin": {
+        "name": "Zscaler",
+        "slugVendor": "rapid7",
+        "slugName": "zscaler",
+        "slugVersion": "1.4.0",
+        "imageData": "https://us.cdn-assets.connect.insight.rapid7.com/icons/rapid7/zscaler/1.4.0/icon.png"
+      },
+      "identifier": "get_blacklist_url",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "isCloud": false,
+      "parameters": {
+        "input": {}
+      },
+      "defaultInputJSONSchema": {
+        "title": "Variables",
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "properties": {
+          "blacklisted_urls": {
+            "description": "URLs added to the blacklist",
+            "items": {
+              "type": "string"
+            },
+            "order": 1,
+            "title": "Blacklisted URLs",
+            "type": "array"
+          }
+        },
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJSONSchema": null,
+      "defaultImageData": "",
+      "connectionType": "CONNECTION"
+    }
+  },
+  "action_chatops": {
+    "_source_workflow": "Forward_Alerts_from_InsightIDR_to_Slack.icon",
+    "template": {
+      "nodeId": "ae7a8dd7-b8b0-48d8-8f6f-c79e0e322b47",
+      "name": "Send Event to Slack",
+      "type": "action_chatops",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "input": {
+          "attachments": [],
+          "message": "{{[af7df902-9020-4025-82fa-3891acf3d6e4].[content]}}",
+          "recipient": "#change_me",
+          "thread_ts": ""
+        }
+      },
+      "defaultInputJSONSchema": {
+        "properties": {
+          "attachments": {
+            "description": "JSON array of attachments - see https://api.slack.com/docs/message-attachments (Advanced)",
+            "items": {
+              "type": "object"
+            },
+            "order": 4,
+            "title": "Attachments",
+            "type": "array"
+          },
+          "message": {
+            "description": "Message to send",
+            "order": 3,
+            "title": "Message",
+            "type": "string"
+          },
+          "recipient": {
+            "description": "Channels begin with # (e.g. #channel) and usernames begin with @ (e.g. @username)",
+            "order": 1,
+            "title": "Enter #channel or @username",
+            "type": "string"
+          },
+          "thread_ts": {
+            "description": "Select timestamp output variable from parent message step",
+            "order": 2,
+            "title": "To post in a thread, select parent message timestamp",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient"
+        ],
+        "title": "Variables",
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "properties": {
+          "channel_id": {
+            "description": "ChannelID of successful message",
+            "order": 1,
+            "title": "Channel ID",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "Timestamp of successful message",
+            "order": 2,
+            "title": "Timestamp",
+            "type": "string"
+          }
+        },
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJSONSchema": null,
+      "defaultImageData": "",
+      "connectionType": "NONE",
+      "chatOpsAppName": "slack",
+      "chatOpsIdentifier": "post_message"
+    }
+  },
+  "artifact": {
+    "_source_workflow": "Unlock_User_Account_in_Active_Directory_from_Slack.icon",
+    "template": {
+      "nodeId": "877ac098-56bf-4c9b-90c8-840425d9a2fe",
+      "name": "Success Artifact",
+      "type": "artifact",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "input": {
+          "content": "Successfully unlocked user"
+        },
+        "type": "markdown"
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": null,
+      "outputJSONSchema": null,
+      "defaultImageData": "https://us.cdn-assets.connect.insight.rapid7.com/step-type-icons/artifact.svg",
+      "connectionType": "NONE"
+    }
+  },
+  "automated_decision": {
+    "_source_workflow": "Enrich_Malicious_URL_Alerts_From_InsightIDR_With_Threat_Crowd.icon",
+    "template": {
+      "nodeId": "19c90abd-b7ca-441a-b018-c8019738dde5",
+      "name": "URL found in DB",
+      "type": "automated_decision",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "defaultEdgeId": "89834a10-c130-4c11-86e3-d6ead0c650be",
+        "stepControlParams": [
+          {
+            "edgeId": "89834a10-c130-4c11-86e3-d6ead0c650be",
+            "expression": {},
+            "expressionText": ""
+          },
+          {
+            "edgeId": "fc100cb5-26d7-4923-9eae-2d368a263c41",
+            "expression": {},
+            "expressionText": ""
+          }
+        ]
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": null,
+      "outputJSONSchema": null,
+      "defaultImageData": "https://us.cdn-assets.connect.insight.rapid7.com/step-type-icons/automated-decision.svg",
+      "connectionType": "NONE"
+    }
+  },
+  "break": {
+    "_source_workflow": "Generate_CVE_Report_from_Slack.icon",
+    "template": {
+      "nodeId": "1e95869b-2f00-4a18-bcc0-7b03358c0f86",
+      "name": "Break",
+      "type": "break",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "stepControlParam": {
+          "edgeId": "c2a8242d-6e4d-4a83-b8af-2e67cf10f0ee",
+          "expression": {
+            "type": "literal",
+            "value": true
+          },
+          "expressionText": "true"
+        }
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": null,
+      "outputJSONSchema": null,
+      "defaultImageData": "https://us.cdn-assets.connect.insight.rapid7.com/step-type-icons/break.svg",
+      "connectionType": "NONE"
+    }
+  },
+  "decision_chatops": {
+    "_source_workflow": "Generate_CVE_Report_from_Slack.icon",
+    "template": {
+      "nodeId": "59347a27-84b8-4823-be48-ff8be283d5a9",
+      "name": "Next Finding?",
+      "type": "decision_chatops",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "attachments": null,
+        "message": "",
+        "messageType": "button",
+        "options": [
+          {
+            "answer": "Yes",
+            "buttonStyle": "default",
+            "confirmation": "OK!",
+            "edgeId": "6fac42e5-ddad-4c34-a4c8-ff803323b67b",
+            "isTimeoutOnly": false
+          },
+          {
+            "answer": "No",
+            "buttonStyle": "default",
+            "confirmation": "No more results will be provided!",
+            "edgeId": "58e70a6d-0959-4ebe-9cbe-6c4ca820e247",
+            "isTimeoutOnly": false
+          }
+        ],
+        "question": "Next Finding?",
+        "recipient": "{{$workflow.[Slack Channel]}}",
+        "threadTimestamp": "{{[8b5f067d-03aa-4d9e-a06b-5ad7dda77b99].[timestamp]}}",
+        "timeout": 300,
+        "timeoutDisplayUnit": "minutes",
+        "timeoutEdgeId": "58e70a6d-0959-4ebe-9cbe-6c4ca820e247"
+      },
+      "defaultInputJSONSchema": {
+        "properties": {
+          "attachments": {
+            "description": "JSON array of attachments - see Help for documentation",
+            "displayType": "bytes",
+            "format": "bytes",
+            "order": 3,
+            "title": "Attachments",
+            "type": "string"
+          },
+          "message": {
+            "description": "Message to send",
+            "order": 1,
+            "title": "Message",
+            "type": "string"
+          },
+          "recipient": {
+            "description": "A channel (e.g. #channel) or username",
+            "order": 2,
+            "title": "Recipient",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient"
+        ],
+        "title": "Variables",
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "properties": {
+          "$success": {
+            "description": "",
+            "order": 8,
+            "title": "$success",
+            "type": "boolean"
+          },
+          "channel_id": {
+            "description": "ChannelID of successful message",
+            "order": 1,
+            "title": "Channel ID",
+            "type": "string"
+          },
+          "display_name": {
+            "description": "The slack display name for the user responding to the question",
+            "order": 9,
+            "title": "Display Name",
+            "type": "string"
+          },
+          "message": {
+            "description": "The message that was sent to slack",
+            "order": 4,
+            "title": "Message",
+            "type": "string"
+          },
+          "path": {
+            "description": "The path taken",
+            "order": 6,
+            "title": "Path",
+            "type": "string"
+          },
+          "recipient": {
+            "description": "The Channel name or User Name",
+            "order": 3,
+            "title": "Recipient",
+            "type": "string"
+          },
+          "responding_user": {
+            "description": "The slack username of the user responding to the question",
+            "order": 7,
+            "title": "Response User",
+            "type": "string"
+          },
+          "response_question": {
+            "description": "The response question that was sent to slack",
+            "order": 5,
+            "title": "Response Question",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "Timestamp of successful message",
+            "order": 2,
+            "title": "Timestamp",
+            "type": "string"
+          }
+        },
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJSONSchema": null,
+      "defaultImageData": "",
+      "connectionType": "NONE",
+      "chatOpsAppName": "slack",
+      "chatOpsIdentifier": "post_interactive_message"
+    }
+  },
+  "filter": {
+    "_source_workflow": "Malicious_Hash_Remediation_with_Cb_Response.icon",
+    "template": {
+      "nodeId": "ea7f724e-57fa-4c67-b522-ee391cb15bf9",
+      "name": "Continue on Detection",
+      "type": "filter",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "stepControlParam": {
+          "edgeId": "fe605a7a-5317-4e73-91a6-695f1b95ec29",
+          "expression": {
+            "left": {
+              "name": "c7eccd25-f839-4b12-a9c0-2740d83dca0d.result.detected",
+              "type": "variable"
+            },
+            "op": "!=",
+            "right": {
+              "type": "literal",
+              "value": "NO_DATA"
+            },
+            "type": "binary"
+          },
+          "expressionText": "{{[c7eccd25-f839-4b12-a9c0-2740d83dca0d].[result].[detected]}} != \"NO_DATA\""
+        },
+        "stopOnMatch": false
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": null,
+      "outputJSONSchema": null,
+      "defaultImageData": "https://us.cdn-assets.connect.insight.rapid7.com/step-type-icons/filter.svg",
+      "connectionType": "NONE"
+    }
+  },
+  "helpers": {
+    "_source_workflow": "Auto_Close_SentinelOne_Alerts_When_InsightIDR_Investigations_Are_Closed_Part_Two.icon",
+    "template": {
+      "nodeId": "d0dcb393-ad61-4856-8a1f-9e8bfdd3ebb9",
+      "name": "Delete Artifact",
+      "type": "helpers",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "entityIds": "[55784ef8-93ef-403a-b5a6-b8c5a9b44100].[__global_artifact_entry_ids]",
+        "lookupStepId": "55784ef8-93ef-403a-b5a6-b8c5a9b44100"
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": null,
+      "outputJSONSchema": null,
+      "defaultImageData": "https://eu.cdn-assets.connect.insight.rapid7.com/step-type-icons/helper.svg",
+      "connectionType": "NONE",
+      "helperIdentifier": "delete_global_artifacts",
+      "caseManagementInputJsonSchema": null,
+      "caseManagementOutputJsonSchema": null
+    }
+  },
+  "human_decision": {
+    "_source_workflow": "Alert_on_InsightIDR_Multi_Country_Authentication.icon",
+    "template": {
+      "nodeId": "f343fab6-1c4d-4397-b235-7e4993cc9acf",
+      "name": "Send Email?",
+      "type": "human_decision",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "defaultEdgeId": "",
+        "notifications": {
+          "artifactIds": null,
+          "userIdsForEmail": []
+        },
+        "stepControlParams": [
+          {
+            "edgeId": "96d52213-88ce-442c-bab4-9fa7b7484cc1",
+            "expression": {},
+            "expressionText": "",
+            "isTimeoutOnly": false,
+            "nodeId": "f343fab6-1c4d-4397-b235-7e4993cc9acf"
+          },
+          {
+            "edgeId": "8922ffd8-f4c8-40ea-a358-5c0b88ce8e04",
+            "expression": {},
+            "expressionText": "",
+            "isTimeoutOnly": false,
+            "nodeId": "f343fab6-1c4d-4397-b235-7e4993cc9acf"
+          }
+        ],
+        "timeout": null,
+        "timeoutDisplayUnit": null
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": null,
+      "outputJSONSchema": null,
+      "defaultImageData": "https://us.cdn-assets.connect.insight.rapid7.com/step-type-icons/human-decision.svg",
+      "connectionType": "NONE"
+    }
+  },
+  "join": {
+    "_source_workflow": "Quarantine_Endpoint_with_Carbon_Black_EDR_from_Microsoft_Teams.icon",
+    "template": {
+      "nodeId": "3e1b20ef-ad34-4d26-9b3a-76703f063926",
+      "name": "Join Paths",
+      "type": "join",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "decisionEdgeIds": [
+          "26f5bf19-83a4-4e2b-8984-8eef71b69b3c",
+          "cd9b1105-3b06-478b-9218-2eb34c3e7fc7"
+        ],
+        "variableSets": []
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": {
+        "properties": {},
+        "title": "Variables",
+        "type": "object"
+      },
+      "outputJSONSchema": {
+        "properties": {},
+        "title": "Variables",
+        "type": "object"
+      },
+      "defaultImageData": "",
+      "connectionType": "NONE"
+    }
+  },
+  "loop": {
+    "_source_workflow": "Top_Remediations_For_Asset_In_Teams.icon",
+    "template": {
+      "nodeId": "5c6d3567-4385-4be8-b143-f66de30ba196",
+      "name": "Remediations Loop",
+      "type": "loop",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "innerEdgeId": "b528b3fb-84ff-4492-9efb-1800f7e1c843",
+        "nextEdgeId": "1bc36fc0-b8f8-4b7d-8767-10e23aea7605",
+        "repeatVariable": "{{[e2af6a3d-d338-496d-9539-4cc4917fbec9].[remediations]}}"
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": null,
+      "outputJSONSchema": {
+        "properties": {},
+        "title": "Variables",
+        "type": "object"
+      },
+      "defaultImageData": "",
+      "connectionType": "NONE"
+    }
+  },
+  "pattern_match": {
+    "_source_workflow": "InsightVM_Top_25_Remediations_to_JIRA.icon",
+    "template": {
+      "nodeId": "efed15db-7070-4608-8781-8b9f33019701",
+      "name": "Extraction Step",
+      "type": "pattern_match",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "parameters": {
+        "captureAll": false,
+        "expressionText": "{{out:/.*/}}",
+        "expressions": [
+          {
+            "type": "variable",
+            "value": {
+              "ident": "out",
+              "regex": ".*"
+            }
+          }
+        ],
+        "ignoreCase": true,
+        "input": "{{[cddd299e-9778-4c55-9c8e-c664ed1ed69b].[$item]}}"
+      },
+      "defaultInputJSONSchema": null,
+      "defaultOutputJSONSchema": null,
+      "outputJSONSchema": null,
+      "defaultImageData": "https://us.cdn-assets.connect.insight.rapid7.com/step-type-icons/pattern-match.svg",
+      "connectionType": "NONE"
+    }
+  },
+  "trigger": {
+    "_source_workflow": "Enrich_Hash_With_Threat_Intelligence_From_Threat_Crowd.icon",
+    "template": {
+      "nodeId": "4a28ddc2-2a84-499a-ac24-4b3ef76b80df",
+      "name": "API Trigger",
+      "type": "trigger",
+      "continueOnFailure": false,
+      "isDisabled": false,
+      "triggerId": "4d2e656d-d268-4c51-88c9-484c317d2f81",
+      "defaultInputJSONSchema": {
+        "definitions": {},
+        "properties": {
+          "hash": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "defaultOutputJSONSchema": {
+        "definitions": {},
+        "properties": {
+          "hash": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "outputJSONSchema": null,
+      "defaultImageData": "https://us.cdn-assets.connect.insight.rapid7.com/step-type-icons/trigger-api.svg",
+      "connectionType": "NONE"
+    }
+  }
+}
