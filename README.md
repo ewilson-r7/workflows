@@ -13,7 +13,7 @@ Deterministic workflow generation for Rapid7 InsightConnect. Describe an automat
    └── insightconnect-workflows/   ← https://github.com/rapid7/insightconnect-workflows
    ```
 
-2. Open this repo in Kiro. The `.kiro/skills/workflow-builder.md` skill activates automatically when you describe a workflow to build.
+2. Open this repo in Kiro. The `.kiro/skills/workflow-builder/SKILL.md` skill activates automatically when you describe a workflow to build.
 
 3. Ensure `icon-validate` is installed:
    ```bash
@@ -55,7 +55,8 @@ python3 analysis/extract_templates.py
 ## Structure
 
 ```
-.kiro/skills/       Kiro skill definition (auto-activates)
+.kiro/skills/workflow-builder/SKILL.md     Build a validated .icon bundle (auto-activates)
+.kiro/skills/workflow-submission/SKILL.md  Submit a bundle to insightconnect-workflows
 .kiro/steering/     Scoped steering (activates when .icon files are in context)
 scripts/            Deterministic .icon generator
 analysis/           Corpus analysis and catalog generation scripts
