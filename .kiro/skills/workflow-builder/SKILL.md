@@ -29,9 +29,13 @@ structure exactly and pass the InsightConnect SDK verification process (`icon-va
 
 ## Authoritative references
 
-All paths below are relative to this repo root. Read these before generating — they are the
-source of truth. Never guess plugin names, action identifiers, schemas, JSON keys, versions, or
-platform structure.
+Every path below is relative to the **repository root**, not to this file. `references/` lives at
+the top level of the repo, not inside `.kiro/skills/workflow-builder/`, so resolve these from the
+repo root even though the usual skill convention puts a `references/` directory alongside
+`SKILL.md`.
+
+Read these before generating. They are the source of truth. Never guess plugin names, action
+identifiers, schemas, JSON keys, versions, or platform structure.
 
 ### Core reference artifacts
 - `references/insightconnect-rules.md` - the detailed rulebook (follow it exactly)
