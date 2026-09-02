@@ -72,8 +72,20 @@ Read from `origin/master` without checking out or disturbing the working branch:
 1. `git -C ../insightconnect-plugins fetch origin master --quiet`
 2. `git -C ../insightconnect-plugins show origin/master:plugins/<slug>/plugin.spec.yaml`
 
-The knowledge base jsonl is a point-in-time snapshot; `origin/master` is more authoritative.
-Instance versions (from the user) override both.
+Read `origin/master` rather than running `git checkout master`. Reading a remote ref is
+non-destructive and still works when the repo sits on a feature branch with uncommitted changes,
+so it cannot disturb work in progress.
+
+The knowledge base jsonl is a point-in-time snapshot; `origin/master` is more authoritative than
+both the jsonl and the local working tree.
+
+### Instance versions are the real source of truth
+
+Even `origin/master` can lag the versions published in a live InsightConnect instance and the
+Rapid7 Extension Library. When reporting a plugin version, state that it came from
+`origin/master` and recommend confirming it against the workflow's **Auto Update** panel in the
+instance. When instance versions are supplied (screenshot or text), prefer those over every other
+source.
 
 ## Lookup order for any capability
 
